@@ -5,8 +5,15 @@ project(SortedList_LinkedList CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(SOURCE test_sorted_linked_list.cpp) 
+
 # build the test
-add_executable(test_sorted_linked_list test_sorted_linked_list.cpp catch.hpp)
+add_executable(test_sorted_linked_list catch.hpp ${SOURCE})
 
 enable_testing()
 add_test(test_sorted_linked_list test_sorted_linked_list)
+
+add_custom_target(submission COMMAND
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/hw7_sorted_linked_list.zip" --format=zip
+       ${SOURCE}
+       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

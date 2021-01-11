@@ -10,3 +10,8 @@ set(SOURCE ring_buffer.tpp test_ring_buffer.cpp)
 # create unittests
 add_executable(test_ring_buffer ${SOURCE})
 
+add_custom_target(submission COMMAND
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/hw7_ring_buffer.zip" --format=zip
+       ${SOURCE}
+       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+      
