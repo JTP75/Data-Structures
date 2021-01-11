@@ -16,7 +16,7 @@ enable_testing()
 add_test(unittest bitset-tests)
 
 add_custom_target(submission COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/submission.zip" --format=zip
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/p1_bitvector.zip" --format=zip
        ${SOURCE}
        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
      

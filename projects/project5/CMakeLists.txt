@@ -22,6 +22,6 @@ add_test(student_tests test_frontier_queue)
 add_test(solver_tests test_solver)
 
 add_custom_target(submission COMMAND
-  ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/submission.zip" --format=zip
+  ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/p5_puzzle_solver.zip" --format=zip
   ${SOURCE}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

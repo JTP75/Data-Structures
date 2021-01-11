@@ -42,6 +42,6 @@ add_test(test02 pathfinder ${CMAKE_SOURCE_DIR}/tests/maze02.png output02.png)
 add_test(test02-compare compare ${CMAKE_SOURCE_DIR}/tests/output02.png output02.png)
 
 add_custom_target(submission COMMAND
-  ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/submission.zip" --format=zip
+  ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/p4_pathfinder.zip" --format=zip
   ${SOURCE}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

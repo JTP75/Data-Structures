@@ -29,7 +29,7 @@ add_executable (mainXMLParser ${SOURCE_XMLPARSER_MAIN})
 
 # a rule to create the submission zip file
 add_custom_target(submission COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/submission.zip" --format=zip
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/p3_xml_parser.zip" --format=zip
     ${CODE_TO_SUBMIT}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 	     
