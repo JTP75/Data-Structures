@@ -1,5 +1,6 @@
 #ifndef BITSET_HPP
 #define BITSET_HPP
+#include <string>
 
 class Bitset{
 public:
