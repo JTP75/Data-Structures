@@ -10,7 +10,6 @@ set(SOURCE_MAIN FindPalindrome.cpp FindPalindrome.hpp)
 
 # create unittests
 add_executable(FindPalindrome-tests catch.hpp ${SOURCE})
-add_executable(FindPalindrome-main FindPalindrome_main.cpp ${SOURCE_MAIN})
 
 enable_testing()
 
