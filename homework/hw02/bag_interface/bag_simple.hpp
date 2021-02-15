@@ -1,7 +1,7 @@
 #ifndef STUDENT_BAG_HPP
 #define STUDENT_BAG_HPP
 
-#include <cstdlib>
+#include "abstract_bag.hpp"
 
 template<typename T> class Bag{
 public:
