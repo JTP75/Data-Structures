@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "XMLParser.cpp"
+#include "XMLParser.hpp"
 
 using namespace std;
 

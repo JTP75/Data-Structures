@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include <iostream>
 #include "catch.hpp"
-#include "XMLParser.cpp"
+#include "XMLParser.hpp"
 
 using namespace std;
 
