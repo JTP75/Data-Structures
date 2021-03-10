@@ -5,7 +5,7 @@ project(LINKEDLIST CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE linked_list.tpp test_linked_list.cpp)
+set(SOURCE linked_list.hpp linked_list.tpp test_linked_list.cpp)
 
 # build the test
 add_executable(test_linked_list
