@@ -46,7 +46,9 @@ public:
 private:
 
   T * data;
+  // number of elements that can be added before reallocation.
   std::size_t capacity;
+  // Current allocated memory size.
   std::size_t size;
   
 };

@@ -1,29 +1,23 @@
+#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_COLOUR_NONE
+#include "catch.hpp"
+
 #include "ring_buffer.h"
 
-#include <cassert>
-
-int main()
-{
+TEST_CASE("Test 1", "[ring_buffer]") {
   RingBuffer<int> buff(3);
-    
-  buff.enqueue(89);
-  buff.enqueue(4);
-  buff.enqueue(45);
-  buff.enqueue(12);
-  buff.enqueue(455);
-  buff.enqueue(1);
 
-  //RingBuffer<int> buff2 = buff;
-    
-  assert(buff.getCount() == 6);
-  assert(buff.dequeue() == 89);
-  assert(buff.dequeue() == 4);
-  assert(buff.dequeue() == 45);
-  assert(buff.dequeue() == 12);
-  assert(buff.dequeue() == 455);
-  assert(buff.dequeue() == 1);
-  assert(buff.getCount() == 0);
+  REQUIRE(buff.enqueue_back(1));
+  REQUIRE(buff.enqueue_back(2));
+  REQUIRE(buff.enqueue_back(3));
+  REQUIRE_FALSE(buff.enqueue_back(4));
+  REQUIRE_FALSE(buff.enqueue_back(5));
+  REQUIRE_FALSE(buff.enqueue_back(6));
 
-  
-  return 0;
+  REQUIRE(buff.getCount() == 3);
+  REQUIRE(buff.dequeue_front() == 1);
+  REQUIRE(buff.dequeue_front() == 2);
+  REQUIRE(buff.dequeue_front() == 3);
+  REQUIRE(buff.getCount() == 0);
+
 }
