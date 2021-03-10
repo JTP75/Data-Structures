@@ -97,7 +97,7 @@ public:
 	/** Returns a vector of vectors containing all palindromes. Each
 	    palindrome is returned as a vector of strings, where the strings include
 	    all current strings added to the FindPalindrome instance.
-	@return  A vector containing all the items in the linked list in order. */
+	@return  A vector of vectors containing all palindromes. */
 	std::vector< std::vector<std::string> > toVector() const;
 
 };
