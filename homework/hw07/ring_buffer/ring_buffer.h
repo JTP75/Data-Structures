@@ -9,8 +9,6 @@ template <typename T> class RingBuffer {
 public:
   RingBuffer(std::size_t size);
 
-  // bool enqueue(const T &item);
-  // T dequeue();
   bool enqueue_front(const T& item);
   bool enqueue_back(const T& item);
   T dequeue_front();

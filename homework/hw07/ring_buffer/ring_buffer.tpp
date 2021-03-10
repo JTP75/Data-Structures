@@ -14,7 +14,7 @@ RingBuffer<T>::RingBuffer(std::size_t size)
 
 /**
 template <typename T>
-bool RingBuffer<T>::enqueue_back(const T& item)
+bool RingBuffer<T>::enqueue_front(const T& item)
 {
   // TODO
 }
@@ -49,7 +49,7 @@ T RingBuffer<T>::dequeue_front()
 
 /**
 template <typename T>
-T RingBuffer<T>::dequeue_front()
+T RingBuffer<T>::dequeue_back()
 {
   // TODO
 }
