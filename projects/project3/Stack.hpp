@@ -35,10 +35,10 @@ public:
 		@return  True if successful, or false otherwise. */
 	bool pop();
 	/** Returns the top item off of the stack without removing it. The stack size
-	    stays the same.
+	    stays the same. Throws a logic_error exception if stack is empty.
 		@return  Item of ItemType that was on the top of the stack. 
-		Throws an exception of type logic_error if the stack is empty. */
-	ItemType peek() const throw(logic_error);
+		@throws std::logic_error if the stack is empty. */
+	ItemType peek() const;
 	/** Deletes all entries on the stack.
 	    @post  Stack contains no items, and the size of the stack is 0. */
 	void clear();

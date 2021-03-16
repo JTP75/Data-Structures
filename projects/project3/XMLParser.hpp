@@ -71,18 +71,19 @@ public:
 	std::vector<TokenStruct> returnTokenizedInput() const;
 	/** Determines if an element name is contained in valid XML input string.
 	    Only finds element names if both the tokenizeInputString() and
-		parseTokenizedInput() methods have returned true.
+		parseTokenizedInput() methods have returned true; throws a logic_error otherwise.
 		@pre  A valid XML tokenized input string is stored internally. 
 		@param A string containing the element name (case sensitive!).
-		@return True if the element name is in the valid XML, or false if not. */
+		@return True if the element name is in the valid XML, or false if not. 
+		@throws std::logic_error if input has not been both tokenized and parsed */
 	bool containsElementName(const std::string &inputString) const;
 	/** Returns the number of times an element name is contained in valid XML input string.
 	    Only returns non-zero frequencies if both the tokenizeInputString() and
-		parseTokenizedInput() methods have returned true.
+		parseTokenizedInput() methods have returned true; throws a logic_error otherwise.
 		@pre  A valid XML tokenized input string is stored internally. 
 		@param A string containing the element name (case sensitive!).
-		@return An int representing the frequency of the element name in the 
-		valid XML string. */
+		@return An int representing the frequency of the element name in the valid XML string. 
+		@throws std::logic_error if input has not been both tokenized and parsed */
 	int frequencyElementName(const std::string &inputString) const;
 	/** Clears the internal data structures for a instance of the class.
 	    @post  The class instance can be used to tokenize a new input string. */

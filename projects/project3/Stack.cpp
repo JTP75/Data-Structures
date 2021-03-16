@@ -43,7 +43,7 @@ bool Stack<ItemType>::push(const ItemType& newItem)
 
 // TODO: Implement the peek method here
 template<class ItemType>
-ItemType Stack<ItemType>::peek() const throw(logic_error)
+ItemType Stack<ItemType>::peek() const
 {
 	ItemType returnItem;
 	return returnItem;
