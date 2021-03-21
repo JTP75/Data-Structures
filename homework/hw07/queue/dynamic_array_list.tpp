@@ -32,7 +32,7 @@ DynamicArrayList<T>& DynamicArrayList<T>::operator=(DynamicArrayList<T> x)
 }
 
 template <typename T>
-void DynamicArrayList<T>::swap(DynamicArrayList<T>& x, DynamicArrayList<T>& y)
+void DynamicArrayList<T>::swap(DynamicArrayList<T>& y)
 {
   //TODO
 }
