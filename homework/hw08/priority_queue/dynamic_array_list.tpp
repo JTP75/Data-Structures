@@ -28,16 +28,16 @@ DynamicArrayList<T>::~DynamicArrayList()
 template <typename T>
 DynamicArrayList<T>& DynamicArrayList<T>::operator=(DynamicArrayList<T> x)
 {
-  swap(*this, x);
+  swap(x);
   return *this;
 }
 
 template <typename T>
-void DynamicArrayList<T>::swap(DynamicArrayList<T>& x, DynamicArrayList<T>& y)
+void DynamicArrayList<T>::swap(DynamicArrayList<T>& y)
 {
-  std::swap(x.data, y.data);
-  std::swap(x.capacity, y.capacity);
-  std::swap(x.size, y.size);
+  std::swap(data, y.data);
+  std::swap(capacity, y.capacity);
+  std::swap(size, y.size);
 }
 
 template <typename T>
