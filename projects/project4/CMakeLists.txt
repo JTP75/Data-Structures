@@ -14,7 +14,7 @@ ADD_EXECUTABLE(compare compare.cpp)
 TARGET_LINK_LIBRARIES(compare image)
 
 set(DEQUE_SOURCE
-  deque.hpp deque.tpp)
+  Node.hpp Node.cpp linked_list.hpp linked_list.tpp deque.hpp deque.tpp)
 
 set(TEST_SOURCE
   test_deque.cpp)
@@ -24,11 +24,11 @@ set(PATHFINDER_SOURCE pathfinder.cpp)
 set(SOURCE ${DEQUE_SOURCE} ${TEST_SOURCE} ${PATHFINDER_SOURCE})
 
 # create unittests
-add_executable(student-tests catch.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
+add_executable(student-tests catch.hpp abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
 TARGET_LINK_LIBRARIES(student-tests)
 
 # build executable
-add_executable(pathfinder abstract_deque.hpp ${DEQUE_SOURCE} ${PATHFINDER_SOURCE})
+add_executable(pathfinder abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${PATHFINDER_SOURCE})
 TARGET_LINK_LIBRARIES(pathfinder image)
 
 # some simple tests
