@@ -14,7 +14,7 @@ ADD_EXECUTABLE(compare compare.cpp)
 TARGET_LINK_LIBRARIES(compare image)
 
 set(DEQUE_SOURCE
-  Node.hpp Node.cpp linked_list.hpp linked_list.tpp deque.hpp deque.tpp)
+  linked_list.hpp linked_list.tpp deque.hpp deque.tpp)
 
 set(TEST_SOURCE
   test_deque.cpp)
