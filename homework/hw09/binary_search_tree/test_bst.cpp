@@ -1,30 +1,32 @@
-#include <cstdlib>
-#include <iostream>
-using std::cout;
-using std::endl;
+#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_COLOUR_NONE
+#include "catch.hpp"
 
 #include "binary_search_tree.h"
 
 typedef BinarySearchTree<int, int> TreeType;
 
-void error(const char* msg, int lineno)
-{
-    cout << "FAILED: (Line " << lineno << ") " << msg << endl;
-}
-
-void test_creation()
-{
+TEST_CASE("Test Construction", "[construction]") {
     TreeType bst1;
 
-    if (!bst1.isEmpty())
-        error("TreeType should be empty here", __LINE__);
-    bst1.insert(10, 10);
-    if (bst1.isEmpty())
-        error("TreeType should not be empty here", __LINE__);
+    REQUIRE(bst1.isEmpty());
 }
 
-void test_insert_retrieve_delete()
-{
+TEST_CASE("Test Insert", "[insert]") {
+    TreeType bst1;
+
+    bst1.insert(10, 10);
+    REQUIRE(!bst1.isEmpty());
+}
+
+TEST_CASE("Test Duplicate Insert", "[duplicate insert]") {
+    TreeType bst1;
+    
+    bst1.insert(12, 12);
+    REQUIRE(!bst1.insert(12, 12));
+}
+
+TEST_CASE("Test Retrieve", "[retrieve]") {
     TreeType bst1;
 
     bst1.insert(10, 10);
@@ -33,49 +35,44 @@ void test_insert_retrieve_delete()
     bst1.insert(12, 12);
     bst1.insert(18, 18);
 
-    if (bst1.insert(12, 12))
-        error("TreeType duplicate key should fail", __LINE__);
+    int item;
+    REQUIRE(bst1.retrieve(18, item));
+    REQUIRE(bst1.retrieve(12, item));
+    REQUIRE(bst1.retrieve(15, item));
+    REQUIRE(bst1.retrieve(5, item));
+    REQUIRE(bst1.retrieve(10, item));
+}
+
+TEST_CASE("Test Remove", "[remove]") {
+    TreeType bst1;
+
+    bst1.insert(10, 10);
+    bst1.insert(5, 5);
+    bst1.insert(15, 15);
+    bst1.insert(12, 12);
+    bst1.insert(18, 18);
 
     int item;
-    if (!bst1.retrieve(18, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst1.retrieve(12, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst1.retrieve(15, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst1.retrieve(5, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst1.retrieve(10, item))
-        error("TreeType retrieve failed", __LINE__);
 
     bst1.remove(12);
-    if (bst1.retrieve(12, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(!bst1.retrieve(12, item));
+
     bst1.remove(18);
-    if (bst1.retrieve(18, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(!bst1.retrieve(18, item));
+
     bst1.remove(5);
-    if (bst1.retrieve(5, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(!bst1.retrieve(5, item));
+
     bst1.remove(10);
-    if (bst1.retrieve(10, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(!bst1.retrieve(10, item));
+
     bst1.remove(15);
-    if (bst1.retrieve(15, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(!bst1.retrieve(15, item));
 
-    if (!bst1.isEmpty())
-        error("TreeType should be empty here", __LINE__);
+    REQUIRE(bst1.isEmpty());
 }
 
-TreeType dummy(TreeType test)
-{
-    TreeType temp = test;
-    return temp;
-}
-
-void test_copy_assign()
-{
+TEST_CASE("Test Copy Assign", "[copy assign]") {
     TreeType bst1;
 
     bst1.insert(50, 50);
@@ -86,30 +83,16 @@ void test_copy_assign()
 
     TreeType bst2;
 
-    bst2 = dummy(bst1);
+    bst2 = bst1;
 
-    if (bst2.isEmpty())
-        error("TreeType should not be empty here", __LINE__);
+    REQUIRE(!bst2.isEmpty());
 
     int item;
-    if (!bst2.retrieve(100, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst2.retrieve(75, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst2.retrieve(50, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (!bst2.retrieve(25, item))
-        error("TreeType retrieve failed", __LINE__);
-    if (bst2.retrieve(51, item))
-        error("TreeType retrieve should have failed", __LINE__);
+    REQUIRE(bst2.retrieve(100, item));
+    REQUIRE(bst2.retrieve(75, item));
+    REQUIRE(bst2.retrieve(50, item));
+    REQUIRE(bst2.retrieve(25, item));
+    REQUIRE(!bst2.retrieve(51, item));
+    
 }
 
-int main()
-{
-
-    test_creation();
-    test_insert_retrieve_delete();
-    test_copy_assign();
-
-    return EXIT_SUCCESS;
-}

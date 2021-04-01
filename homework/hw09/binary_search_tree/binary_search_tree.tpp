@@ -189,3 +189,12 @@ void BinarySearchTree<KeyType, ItemType>::search(KeyType key,
         }
     }
 }
+
+template<typename KeyType, typename ItemType>
+void BinarySearchTree<KeyType, ItemType>::treeSort(ItemType arr[], int size) {
+    // TODO: check for duplicate items in the input array
+
+    // TODO: use the tree to sort the array items
+
+    // TODO: overwrite input array values with sorted values
+}
