@@ -9,9 +9,6 @@ public:
 
   T getValue() const;
   
-  // copy assignment
-  State& operator=(const State& rhs);
-
   void updatePathCost(std::size_t cost);
   
   std::size_t getPathCost() const;

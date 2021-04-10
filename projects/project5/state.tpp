@@ -6,19 +6,6 @@ State<T>::State(const T &p, std::size_t cost, std::size_t heur)
   f = g + h;
 }
 
-template <typename T>
-State<T>& State<T>::operator=(const State<T>& rhs)
-{
-	if (this != rhs)
-	{
-		value = rhs.value;
-		g = rhs.g;
-		h = rhs.h;
-		f = rhs.f;
-	}
-	return *this;
-}
-
 template <typename T> T State<T>::getValue() const { return value; }
 
 template <typename T> void State<T>::updatePathCost(std::size_t cost) {

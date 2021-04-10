@@ -18,7 +18,7 @@ void frontier_queue<T>::push(const T &p, std::size_t cost, std::size_t heur) {
 
   //TODO
   
-  //implement this the same way we implemented pop in the heap lecture. Compare using getFCost
+  //implement this the same way we implemented push in the heap lecture.
 
 }
 

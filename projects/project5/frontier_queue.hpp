@@ -1,8 +1,6 @@
 #ifndef FRONTIER_QUEUE_HPP
 #define FRONTIER_QUEUE_HPP
 
-// TODO add necessary includes
-
 #include "state.hpp"
 #include <vector>
 
