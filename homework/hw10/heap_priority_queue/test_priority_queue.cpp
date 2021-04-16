@@ -6,21 +6,21 @@
 
 TEST_CASE("Test Construction", "[construction]") {
   HeapPriorityQueue<int>  pq;
-  assert(pq.isEmpty());
+  REQUIRE(pq.isEmpty());
 }
 
 TEST_CASE("Test add", "[add]") {
   HeapPriorityQueue<int>  pq;
   pq.add(25);
 
-  assert(!pq.isEmpty());
-  assert(pq.peek() == 25);
+  REQUIRE(!pq.isEmpty());
+  REQUIRE(pq.peek() == 25);
 
   pq.add(1);
-  assert(pq.peek() == 25);
+  REQUIRE(pq.peek() == 25);
 
   pq.add(78);
-  assert(pq.peek() == 78);
+  REQUIRE(pq.peek() == 78);
 }
 
 TEST_CASE("Test remove", "[remove]") {
@@ -30,9 +30,9 @@ TEST_CASE("Test remove", "[remove]") {
   pq.add(78);
 
   pq.remove();
-  assert(pq.peek() == 25);
+  REQUIRE(pq.peek() == 25);
   pq.remove();
-  assert(pq.peek() == 1);
+  REQUIRE(pq.peek() == 1);
   pq.remove();
-  assert(pq.isEmpty());
+  REQUIRE(pq.isEmpty());
 }
