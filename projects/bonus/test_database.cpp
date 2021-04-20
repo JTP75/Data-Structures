@@ -131,9 +131,9 @@ TEST_CASE("Test Entry Types", "[entry type]") {
 
     std::string isbn2 = "000-0-00-000000-2";
     std::string catalog_id2 = "0000002";
-    e1.title = "A Dream of Spring";
-    e1.author = "George R. R. Martin";
-    e1.pubYear = 2032;
+    e2.title = "A Dream of Spring";
+    e2.author = "George R. R. Martin";
+    e2.pubYear = 2032;
 
     testdb.add(isbn2, catalog_id2, e2);
 
