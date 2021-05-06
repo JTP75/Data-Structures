@@ -15,12 +15,12 @@ ArrayList<T> & ArrayList<T>::operator=(const ArrayList & rhs){
 }
 
 template <typename T>
-bool ArrayList<T>::isEmpty() const{
+bool ArrayList<T>::isEmpty() const noexcept {
   return false;
 }
 
 template <typename T>
-std::size_t ArrayList<T>::getLength() const{
+std::size_t ArrayList<T>::getLength() const noexcept {
   return 0;
 }
 
