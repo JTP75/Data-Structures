@@ -81,19 +81,19 @@ template <typename T> std::size_t Image<T>::height() const { return _height; }
 
 template <typename T> T &Image<T>::operator()(std::size_t i, std::size_t j) {
 
-  if ((j >= _height) || (i >= _width))
+  if ((j >= _width) || (i >= _height))
     throw std::out_of_range("Image: Invalid location in operator()");
 
-  return _data[j * _width + i];
+  return _data[i * _width + j];
 }
 
 template <typename T>
 T Image<T>::operator()(std::size_t i, std::size_t j) const {
 
-  if ((j >= _height) || (i >= _width))
+  if ((j >= _width) || (i >= _height))
     throw std::out_of_range("Image: Invalid location in operator()");
 
-  return _data[j * _width + i];
+  return _data[i * _width + j];
 }
 
 #endif // IMAGE_H

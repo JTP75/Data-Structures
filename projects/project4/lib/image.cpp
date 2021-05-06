@@ -1,7 +1,7 @@
 #include "image.h"
 
 // for file I/O
-#include "lodepng.h"
+#include "lodepng.cpp"
 
 Image<Pixel> readFromFile(std::string fname) {
 
@@ -16,8 +16,8 @@ Image<Pixel> readFromFile(std::string fname) {
 
   Image<Pixel> im(w, h);
   std::size_t idx = 0;
-  for (std::size_t i = 0; i < im.width(); ++i)
-    for (std::size_t j = 0; j < im.height(); ++j) {
+  for (std::size_t i = 0; i < im.height(); ++i)
+    for (std::size_t j = 0; j < im.width(); ++j) {
       im(i, j).red = raw[idx++];
       im(i, j).green = raw[idx++];
       im(i, j).blue = raw[idx++];
@@ -32,8 +32,8 @@ void writeToFile(const Image<Pixel> &im, std::string fname) {
   std::vector<unsigned char> raw(4 * im.width() * im.height());
 
   std::size_t idx = 0;
-  for (std::size_t i = 0; i < im.width(); ++i)
-    for (std::size_t j = 0; j < im.height(); ++j) {
+  for (std::size_t i = 0; i < im.height(); ++i)
+    for (std::size_t j = 0; j < im.width(); ++j) {
       raw[idx++] = im(i, j).red;
       raw[idx++] = im(i, j).green;
       raw[idx++] = im(i, j).blue;
