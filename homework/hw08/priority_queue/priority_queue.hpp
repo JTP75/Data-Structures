@@ -2,7 +2,7 @@
 #ifndef _PRIORITY_QUEUE_H_
 #define _PRIORITY_QUEUE_H_
 
-#include "abstract_priority_queue.h"
+#include "abstract_priority_queue.hpp"
 
 // Type T must be orderable
 // Type L must conform to AbstractSortedList<T>

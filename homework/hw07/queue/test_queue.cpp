@@ -2,10 +2,8 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "dynamic_array_list.h"
-#include "queue.h"
-
-#include <cassert>
+#include "dynamic_array_list.hpp"
+#include "queue.hpp"
 
 TEST_CASE("Testing 1", "[queue]") {
   // a queue, holding ints, using a DynamicArrayList as the container

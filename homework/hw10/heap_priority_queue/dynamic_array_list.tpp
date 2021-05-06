@@ -1,4 +1,4 @@
-#include "dynamic_array_list.h"
+#include "dynamic_array_list.hpp"
 
 #include <algorithm>
 #include <stdexcept>

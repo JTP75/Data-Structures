@@ -2,8 +2,8 @@
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
-#include "abstract_queue.h"
-#include "abstract_list.h"
+#include "abstract_queue.hpp"
+#include "abstract_list.hpp"
 
 template <typename T, typename L>
 class Queue: public AbstractQueue<T>

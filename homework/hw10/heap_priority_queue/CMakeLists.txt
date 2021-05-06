@@ -5,7 +5,7 @@ project(PQH CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE heap_priority_queue.h test_priority_queue.cpp) 
+set(SOURCE heap_priority_queue.hpp test_priority_queue.cpp) 
 
 # create unittests
 add_executable(test_priority_queue ${SOURCE})

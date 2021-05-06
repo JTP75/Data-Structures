@@ -1,4 +1,4 @@
-#include "binary_search_tree.h"
+#include "binary_search_tree.hpp"
 
 template <typename KeyType, typename ItemType>
 BinarySearchTree<KeyType, ItemType>::BinarySearchTree()

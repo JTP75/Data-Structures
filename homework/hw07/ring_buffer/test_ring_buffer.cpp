@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "ring_buffer.h"
+#include "ring_buffer.hpp"
 
 TEST_CASE("Test 1", "[ring_buffer]") {
   RingBuffer<int> buff(3);

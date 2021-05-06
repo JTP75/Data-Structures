@@ -2,7 +2,7 @@
 using std::cout;
 using std::endl;
 
-#include "BinaryTree.h"
+#include "BinaryTree.hpp"
 
 typedef std::string ItemType;
 typedef void (*FunctionType)(ItemType& anItem);

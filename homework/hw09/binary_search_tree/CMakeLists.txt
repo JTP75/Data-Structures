@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 project(BinarySearchTree)
 
-set(SOURCE test_bst.cpp binary_search_tree.h binary_search_tree.tpp)
+# require a C++11 compiler for all targets
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test_bst test_bst.cpp binary_search_tree.h)
-set_property(TARGET test_bst PROPERTY CXX_STANDARD 11)
+set(SOURCE test_bst.cpp binary_search_tree.hpp binary_search_tree.tpp)
+
+add_executable(test_bst test_bst.cpp binary_search_tree.hpp binary_search_tree.tpp)
 
 enable_testing()
 

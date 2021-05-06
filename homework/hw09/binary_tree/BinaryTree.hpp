@@ -1,12 +1,10 @@
 // ********************************************************
 // Header file BinaryTree.h for the ADT binary tree.
 // ********************************************************
-#ifndef _BinaryTree_h
-#define _BinaryTree_h
+#ifndef _BINARY_TREE_H
+#define _BINARY_TREE_H
 
-#include <cassert>
-
-#include "TreeException.h"
+#include "TreeException.hpp"
 
 // Binary Tree Type
 // templated over the item type and the visit function

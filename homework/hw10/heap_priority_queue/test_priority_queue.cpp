@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "heap_priority_queue.h"
+#include "heap_priority_queue.hpp"
 
 TEST_CASE("Test Construction", "[construction]") {
   HeapPriorityQueue<int>  pq;

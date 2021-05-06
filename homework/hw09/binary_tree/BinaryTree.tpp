@@ -1,7 +1,6 @@
-// ********************************************************
-// Template implementation file BinaryTree.tpp for the
-//  ADT binary tree.
-// ********************************************************
+
+#include "BinaryTree.hpp"
+
 template <class TreeItemType, class FunctionType>
 BinaryTree<TreeItemType, FunctionType>::BinaryTree()
     : root(0){};

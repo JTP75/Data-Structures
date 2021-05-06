@@ -1,4 +1,4 @@
-#include "dynamic_array_list.h"
+#include "dynamic_array_list.hpp"
 
 #include <algorithm>
 #include <stdexcept>
@@ -20,7 +20,6 @@ DynamicArrayList<T>::DynamicArrayList(const DynamicArrayList<T>& x)
 template <typename T>
 DynamicArrayList<T>::~DynamicArrayList()
 {
-  std::clog << "DynamicArrayList Destructor called." << std::endl;
   //TODO
 }
 

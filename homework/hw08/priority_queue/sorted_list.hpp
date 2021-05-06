@@ -2,7 +2,7 @@
 #ifndef _SORTED_LIST_H_
 #define _SORTED_LIST_H_
 
-#include "abstract_sorted_list.h"
+#include "abstract_sorted_list.hpp"
 
 // T is any orderable type
 // L must conform to the AbstractList Interface

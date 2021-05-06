@@ -1,4 +1,4 @@
-#include "sorted_list.h"
+#include "sorted_list.hpp"
 
 template <typename T, typename L>
 SortedList<T, L>::SortedList()

@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
-project(ICE-14 CXX)
+project(queue CXX)
 
 # require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE dynamic_array_list.tpp test_queue.cpp)
+set(SOURCE dynamic_array_list.hpp dynamic_array_list.tpp queue.hpp test_queue.cpp)
 
 # create unittests
 add_executable(test_queue ${SOURCE})

@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "binary_search_tree.h"
+#include "binary_search_tree.hpp"
 
 typedef BinarySearchTree<int, int> TreeType;
 

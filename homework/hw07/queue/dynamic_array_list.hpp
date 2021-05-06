@@ -1,7 +1,7 @@
 #ifndef _DYNAMIC_ARRAY_LIST_H_
 #define _DYNAMIC_ARRAY_LIST_H_
 
-#include "abstract_list.h"
+#include "abstract_list.hpp"
 
 template <typename T>
 class DynamicArrayList: public AbstractList<T>
@@ -20,6 +20,7 @@ public:
   // copy assignment
   DynamicArrayList& operator=(DynamicArrayList x);
 
+  // swap with the input list
   void swap(DynamicArrayList& y);
   
   // determine if a list is empty
@@ -46,7 +47,9 @@ public:
 private:
 
   T * data;
+  // number of elements that can be added before reallocation (space remaining)
   std::size_t capacity;
+  // current allocated memory
   std::size_t size;
   
 };

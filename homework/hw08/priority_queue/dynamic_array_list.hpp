@@ -1,7 +1,7 @@
 #ifndef _DYNAMIC_ARRAY_LIST_H_
 #define _DYNAMIC_ARRAY_LIST_H_
 
-#include "abstract_list.h"
+#include "abstract_list.hpp"
 
 template <typename T>
 class DynamicArrayList: public AbstractList<T>
@@ -20,7 +20,7 @@ public:
   // copy assignment
   DynamicArrayList& operator=(DynamicArrayList x);
 
-  void swap(DynamicArrayList& x, DynamicArrayList& y);
+  void swap(DynamicArrayList& y);
   
   // determine if a list is empty
   bool isEmpty();

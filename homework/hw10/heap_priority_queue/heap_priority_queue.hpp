@@ -2,8 +2,8 @@
 #ifndef _HEAP_PRIORITY_QUEUE_H_
 #define _HEAP_PRIORITY_QUEUE_H_
 
-#include "abstract_priority_queue.h"
-#include "dynamic_array_list.h"
+#include "abstract_priority_queue.hpp"
+#include "dynamic_array_list.hpp"
 
 template <typename T>
 class HeapPriorityQueue: public AbstractPriorityQueue<T>
