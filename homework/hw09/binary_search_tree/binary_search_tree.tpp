@@ -156,9 +156,8 @@ template <typename KeyType, typename ItemType>
 void BinarySearchTree<KeyType, ItemType>::inorder(Node<KeyType, ItemType>* curr,
     Node<KeyType, ItemType>*& in, Node<KeyType, ItemType>*& parent)
 {
-    // TODO 
-    // move right once
-    // move left as far as possible
+    // TODO: find inorder successor of "curr" and assign to "in"
+
 }
 
 template <typename KeyType, typename ItemType>
