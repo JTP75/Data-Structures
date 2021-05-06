@@ -18,5 +18,5 @@ public:
    Node<ItemType>* getNext() const ;
 }; // end Node
 
-#include "Node.cpp"
+#include "Node.tpp"
 #endif

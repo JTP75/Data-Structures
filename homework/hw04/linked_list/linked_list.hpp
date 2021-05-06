@@ -25,10 +25,10 @@ public:
   void swap(LinkedList& x, LinkedList& y);
   
   // determine if a list is empty
-  bool isEmpty() const;
+  bool isEmpty() const noexcept;
 
   // return current length of the list
-  std::size_t getLength() const;
+  std::size_t getLength() const noexcept;
 
   // insert item at position in the list using 1-based indexing
   bool insert(std::size_t position, const T& item);

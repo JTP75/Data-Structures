@@ -32,14 +32,14 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 }
 
 template <typename T>
-bool LinkedList<T>::isEmpty() const
+bool LinkedList<T>::isEmpty() const noexcept
 {
   //TODO
   return true;
 }
 
 template <typename T>
-std::size_t LinkedList<T>::getLength() const
+std::size_t LinkedList<T>::getLength() const noexcept
 {
   //TODO
   return 0;
