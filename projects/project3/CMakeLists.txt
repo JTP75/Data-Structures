@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # some definitions
-set(CODE_TO_SUBMIT Stack.cpp XMLParser.hpp XMLParser.cpp XMLParser_test.cpp)
+set(CODE_TO_SUBMIT Stack.tpp XMLParser.hpp XMLParser.cpp XMLParser_test.cpp)
 set(SOURCE_STACK_MAIN mainStack.cpp)
 set(SOURCE_XMLPARSER XMLParser.cpp)
 set(SOURCE_XMLPARSER_TEST XMLParser.cpp XMLParser_test.cpp)

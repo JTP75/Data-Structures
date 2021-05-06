@@ -56,6 +56,6 @@ public:
 };  // end Bag
 
 // Include the source for the template class
-#include "Bag.cpp"
+#include "Bag.tpp"
 
 #endif

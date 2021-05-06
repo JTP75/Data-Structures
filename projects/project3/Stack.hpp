@@ -46,6 +46,6 @@ public:
 	virtual ~Stack();
 }; // end Stack
 
-#include "Stack.cpp"
+#include "Stack.tpp"
 #endif
 
