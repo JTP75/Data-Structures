@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(P2 CXX)
+project(P3 CXX)
 
 #require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)
