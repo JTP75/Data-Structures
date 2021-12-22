@@ -5,6 +5,8 @@ project(bags CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(SOURCE abstract_bag.hpp dynamic_bag_tests.cpp dynamic_bag.hpp dynamic_bag.tpp limited_size_bag_tests.cpp limited_size_bag.hpp limited_size_bag.tpp)
+
 # create unittests
 add_executable(dynamic-bag-tests catch.hpp abstract_bag.hpp dynamic_bag_tests.cpp dynamic_bag.hpp dynamic_bag.tpp)
 add_executable(limited-size-bag-tests catch.hpp abstract_bag.hpp limited_size_bag_tests.cpp limited_size_bag.hpp limited_size_bag.tpp)

@@ -58,6 +58,6 @@ test15
 PROPERTIES WILL_FAIL true )
 
 add_custom_target(submission COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem05_postfix_prefix.zip" --format=zip
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem05_postpre.zip" --format=zip
        ${SOURCE}
        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

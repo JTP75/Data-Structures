@@ -5,7 +5,7 @@ project(add CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE add_tests.cpp add.hpp add.tpp abstract_operator.hpp)
+set(SOURCE abstract_operator.hpp add_tests.cpp add.hpp add.tpp)
 
 # create unittests
 add_executable(add-tests catch.hpp ${SOURCE})
