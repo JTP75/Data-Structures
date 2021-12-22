@@ -5,7 +5,7 @@ project(add CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE abstract_operator.hpp add_tests.cpp add.hpp add.tpp)
+set(SOURCE add_tests.cpp abstract_operator.hpp add.hpp add.tpp)
 
 # create unittests
 add_executable(add-tests catch.hpp ${SOURCE})
@@ -13,7 +13,7 @@ add_executable(add-tests catch.hpp ${SOURCE})
 enable_testing()
 
 # unit tests
-add_test(unittest add-tests)
+add_test(test-add add-tests)
 
 add_custom_target(submission COMMAND
     ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem00_add.zip" --format=zip

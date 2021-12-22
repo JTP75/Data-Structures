@@ -19,7 +19,7 @@ add_executable(XMLParser-tests catch.hpp ${SOURCE_XMLPARSER_TEST})
 enable_testing()
 
 # unit tests
-add_test(unittest XMLParser-tests)
+add_test(test-parser XMLParser-tests)
 
 # add a mainStack executable
 add_executable (mainStack ${SOURCE_STACK_MAIN})

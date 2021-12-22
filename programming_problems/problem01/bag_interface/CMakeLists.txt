@@ -13,7 +13,7 @@ add_executable(bag-tests catch.hpp ${SOURCE})
 enable_testing()
 
 # unit tests
-add_test(unittest bag-tests)
+add_test(test-bag bag-tests)
 
 add_custom_target(submission COMMAND
     ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem01_bag_interface.zip" --format=zip

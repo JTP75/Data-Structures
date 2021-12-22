@@ -13,7 +13,7 @@ add_executable(FindPalindrome-tests catch.hpp ${SOURCE})
 enable_testing()
 
 # unit tests
-add_test(unittest FindPalindrome-tests)
+add_test(test-palindrome FindPalindrome-tests)
 
 add_custom_target(submission COMMAND
     ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/p2_palindrome.zip" --format=zip

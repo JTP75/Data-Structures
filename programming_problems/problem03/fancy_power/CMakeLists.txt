@@ -13,7 +13,7 @@ add_executable(fancy-power-tests catch.hpp ${SOURCE})
 enable_testing()
 
 # unit tests
-add_test(unittest fancy-power-tests)
+add_test(test-powers fancy-power-tests)
 
 add_custom_target(submission COMMAND
     ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem03_fancy_power.zip" --format=zip
