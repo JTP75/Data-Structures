@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-PROJECT(AlgebraicExpressions CXX)
+PROJECT(postpre CXX)
 
 set(SOURCE postpre.cpp algebraic_expressions.cpp algebraic_expressions.hpp)
 
@@ -58,6 +58,6 @@ test15
 PROPERTIES WILL_FAIL true )
 
 add_custom_target(submission COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/hw5_postfix_prefix.zip" --format=zip
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem05_postfix_prefix.zip" --format=zip
        ${SOURCE}
        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

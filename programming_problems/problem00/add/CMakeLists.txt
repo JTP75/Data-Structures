@@ -16,7 +16,7 @@ enable_testing()
 add_test(unittest add-tests)
 
 add_custom_target(submission COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/hw0_add.zip" --format=zip
+    ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem00_add.zip" --format=zip
        ${SOURCE}
        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
      
