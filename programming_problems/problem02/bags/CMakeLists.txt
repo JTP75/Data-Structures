@@ -12,7 +12,8 @@ add_executable(limited-size-bag-tests catch.hpp abstract_bag.hpp limited_size_ba
 enable_testing()
 
 # unit tests
-add_test(unittest dynamic-bag-tests limited-size-bag-tests)
+add_test(test-dynamic dynamic-bag-tests)
+add_test(test-limited limited-size-bag-tests) 
 
 add_custom_target(submission COMMAND
     ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/problem02_bags.zip" --format=zip
