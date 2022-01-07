@@ -19,12 +19,6 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 }
 
 template <typename T>
-void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
-{
-  //TODO
-}
-
-template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 {
   //TODO

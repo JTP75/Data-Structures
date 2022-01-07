@@ -20,9 +20,6 @@ public:
   
   // copy assignment
   LinkedList& operator=(const LinkedList& x);
-
-  // swap two lists 
-  void swap(LinkedList& x, LinkedList& y);
   
   // determine if a list is empty
   bool isEmpty() const noexcept;
