@@ -20,9 +20,6 @@ public:
   // copy assignment
   DynamicArrayList& operator=(DynamicArrayList x);
 
-  // swap with the input list
-  void swap(DynamicArrayList& y);
-  
   // determine if a list is empty
   bool isEmpty();
 
