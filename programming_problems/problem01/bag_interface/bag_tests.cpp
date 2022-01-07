@@ -6,6 +6,10 @@
 // force template expansion
 template class Bag<int>;
 
+TEST_CASE("Test Type", "[Bag]"){
+  REQUIRE((std::is_base_of< AbstractBag<int>,Bag<int> >::value) == 1);
+}
+
 TEST_CASE("Test Construction/Destruction", "[Bag]"){
 
   Bag<int> b;
