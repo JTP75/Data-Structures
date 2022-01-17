@@ -3,7 +3,7 @@
 
 #include "abstract_operator.hpp"
 
-template<typename T> class Add : public Abstract_Operator<T>{
+template<typename T> class Add : public AbstractOperator<T>{
 public:
 
   Add();

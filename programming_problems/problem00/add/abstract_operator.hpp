@@ -3,12 +3,12 @@
 
 #include <cstdlib>
 
-template<typename T> class Abstract_Operator{
+template<typename T> class AbstractOperator{
 public:
 
-  Abstract_Operator() {};
+  AbstractOperator() {};
   
-  virtual ~Abstract_Operator() = 0;
+  virtual ~AbstractOperator() {};
 
   virtual T call(T arg1, T arg2) const = 0;
 
