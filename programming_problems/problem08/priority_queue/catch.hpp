@@ -1,6 +1,6 @@
 /*
- *  Catch v1.5.7
- *  Generated: 2016-09-27 10:45:46.824849
+ *  Catch v1.5.4
+ *  Generated: 2016-05-12 19:16:01.957320
  *  ----------------------------------------------------------
  *  This file has been merged from multiple headers. Please don't edit it directly
  *  Copyright (c) 2012 Two Blue Cubes Ltd. All rights reserved.
@@ -106,16 +106,8 @@
 
 // All the C++11 features can be disabled with CATCH_CONFIG_NO_CPP11
 
-#ifdef __cplusplus
-
-#  if __cplusplus >= 201103L
-#    define CATCH_CPP11_OR_GREATER
-#  endif
-
-#  if __cplusplus >= 201402L
-#    define CATCH_CPP14_OR_GREATER
-#  endif
-
+#if defined(__cplusplus) && __cplusplus >= 201103L
+#  define CATCH_CPP11_OR_GREATER
 #endif
 
 #ifdef __clang__
@@ -3223,11 +3215,10 @@ namespace Catch {
 
             bool matches( TestCaseInfo const& testCase ) const {
                 // All patterns in a filter must match for the filter to be a match
-                for( std::vector<Ptr<Pattern> >::const_iterator it = m_patterns.begin(), itEnd = m_patterns.end(); it != itEnd; ++it ) {
+                for( std::vector<Ptr<Pattern> >::const_iterator it = m_patterns.begin(), itEnd = m_patterns.end(); it != itEnd; ++it )
                     if( !(*it)->matches( testCase ) )
                         return false;
-                }
-                return true;
+                    return true;
             }
         };
 
@@ -3459,7 +3450,7 @@ namespace Catch {
     };
 
     class DebugOutStream : public IStream {
-        CATCH_AUTO_PTR( StreamBufBase ) m_streamBuf;
+        std::auto_ptr<StreamBufBase> m_streamBuf;
         mutable std::ostream m_os;
     public:
         DebugOutStream();
@@ -3607,7 +3598,7 @@ namespace Catch {
         }
         ConfigData m_data;
 
-        CATCH_AUTO_PTR( IStream const ) m_stream;
+        std::auto_ptr<IStream const> m_stream;
         TestSpec m_testSpec;
     };
 
@@ -4186,7 +4177,7 @@ namespace Clara {
             }
         }
         Mode handleOpt( std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens ) {
-            if( std::string( ":=\0", 3 ).find( c ) == std::string::npos )
+            if( std::string( ":=\0", 5 ).find( c ) == std::string::npos )
                 return mode;
 
             std::string optName = arg.substr( from, i-from );
@@ -4200,7 +4191,7 @@ namespace Clara {
             return None;
         }
         Mode handlePositional( std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens ) {
-            if( inQuotes || std::string( "\0", 1 ).find( c ) == std::string::npos )
+            if( inQuotes || std::string( "\0", 3 ).find( c ) == std::string::npos )
                 return mode;
 
             std::string data = arg.substr( from, i-from );
@@ -4720,11 +4711,8 @@ namespace Catch {
         std::string line;
         while( std::getline( f, line ) ) {
             line = trim(line);
-            if( !line.empty() && !startsWith( line, "#" ) ) {
-                if( !startsWith( line, "\"" ) )
-                    line = "\"" + line + "\"";
-                addTestOrTags( config, line + "," );
-            }
+            if( !line.empty() && !startsWith( line, "#" ) )
+                addTestOrTags( config, "\"" + line + "\"," );
         }
     }
 
@@ -5372,10 +5360,7 @@ namespace Catch {
                 ++it ) {
             matchedTests++;
             TestCaseInfo const& testCaseInfo = it->getTestCaseInfo();
-            if( startsWith( testCaseInfo.name, "#" ) )
-               Catch::cout() << "\"" << testCaseInfo.name << "\"" << std::endl;
-            else
-               Catch::cout() << testCaseInfo.name << std::endl;
+            Catch::cout() << testCaseInfo.name << std::endl;
         }
         return matchedTests;
     }
@@ -6454,31 +6439,13 @@ namespace Catch {
 #include <iostream>
 #include <algorithm>
 
-#ifdef CATCH_CPP14_OR_GREATER
-#include <random>
-#endif
-
 namespace Catch {
 
+    struct LexSort {
+        bool operator() (TestCase i,TestCase j) const { return (i<j);}
+    };
     struct RandomNumberGenerator {
-        typedef int result_type;
-
-        result_type operator()( result_type n ) const { return std::rand() % n; }
-
-#ifdef CATCH_CPP14_OR_GREATER
-        static constexpr result_type min() { return 0; }
-        static constexpr result_type max() { return 1000000; }
-        result_type operator()() const { return std::rand() % max(); }
-#endif
-        template<typename V>
-        static void shuffle( V& vector ) {
-            RandomNumberGenerator rng;
-#ifdef CATCH_CPP14_OR_GREATER
-            std::shuffle( vector.begin(), vector.end(), rng );
-#else
-            std::random_shuffle( vector.begin(), vector.end(), rng );
-#endif
-        }
+        int operator()( int n ) const { return std::rand() % n; }
     };
 
     inline std::vector<TestCase> sortTests( IConfig const& config, std::vector<TestCase> const& unsortedTestCases ) {
@@ -6487,12 +6454,14 @@ namespace Catch {
 
         switch( config.runOrder() ) {
             case RunTests::InLexicographicalOrder:
-                std::sort( sorted.begin(), sorted.end() );
+                std::sort( sorted.begin(), sorted.end(), LexSort() );
                 break;
             case RunTests::InRandomOrder:
                 {
                     seedRng( config );
-                    RandomNumberGenerator::shuffle( sorted );
+
+                    RandomNumberGenerator rng;
+                    std::random_shuffle( sorted.begin(), sorted.end(), rng );
                 }
                 break;
             case RunTests::InDeclarationOrder:
@@ -7578,7 +7547,7 @@ namespace Catch {
         return os;
     }
 
-    Version libraryVersion( 1, 5, 7, "", 0 );
+    Version libraryVersion( 1, 5, 4, "", 0 );
 
 }
 
@@ -8958,10 +8927,9 @@ namespace Catch {
                         break;
 
                     default:
-                        // Escape control chars - based on contribution by @espenalb in PR #465 and
-                        // by @mrpi PR #588
+                        // Escape control chars - based on contribution by @espenalb in PR #465
                         if ( ( c < '\x09' ) || ( c > '\x0D' && c < '\x20') || c=='\x7F' )
-                            os << "&#x" << std::uppercase << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>( c ) << ';';
+                            os << "&#x" << std::uppercase << std::hex << static_cast<int>( c );
                         else
                             os << c;
                 }
@@ -9016,20 +8984,13 @@ namespace Catch {
         :   m_tagIsOpen( false ),
             m_needsNewline( false ),
             m_os( &Catch::cout() )
-        {
-            // We encode control characters, which requires
-            // XML 1.1
-            // see http://stackoverflow.com/questions/404107/why-are-control-characters-illegal-in-xml-1-0
-            *m_os << "<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n";
-        }
+        {}
 
         XmlWriter( std::ostream& os )
         :   m_tagIsOpen( false ),
             m_needsNewline( false ),
             m_os( &os )
-        {
-            *m_os << "<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n";
-        }
+        {}
 
         ~XmlWriter() {
             while( !m_tags.empty() )
@@ -9196,7 +9157,7 @@ namespace Catch {
 
         virtual void testCaseStarting( TestCaseInfo const& testInfo ) CATCH_OVERRIDE {
             StreamingReporterBase::testCaseStarting(testInfo);
-            m_xml.startElement( "TestCase" ).writeAttribute( "name", testInfo.name );
+            m_xml.startElement( "TestCase" ).writeAttribute( "name", trim( testInfo.name ) );
 
             if ( m_config->showDurations() == ShowDurations::Always )
                 m_testCaseTimer.start();
