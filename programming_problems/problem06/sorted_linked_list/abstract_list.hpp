@@ -2,6 +2,8 @@
 #ifndef _ABSTRACT_LIST_H_
 #define _ABSTRACT_LIST_H_
 
+#include <cstdlib>
+
 template <typename T>
 class AbstractList
 {
