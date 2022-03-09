@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
   // get input/output file names from command line arguments
   if (argc != 3) {
-    std::cout << "Usage: compare"
+    std::cout << "Usage: pathfinder"
               << "<first_input_filename> <second_output_filename>\n"
               << std::endl;
     return EXIT_FAILURE;
