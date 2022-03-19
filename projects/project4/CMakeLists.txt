@@ -24,8 +24,8 @@ set(PATHFINDER_SOURCE pathfinder.cpp)
 set(SOURCE ${DEQUE_SOURCE} ${TEST_SOURCE} ${PATHFINDER_SOURCE})
 
 # create unittests
-add_executable(student-tests catch.hpp abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
-TARGET_LINK_LIBRARIES(student-tests)
+add_executable(test-deque catch.hpp abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
+TARGET_LINK_LIBRARIES(test-deque)
 
 # build executable
 add_executable(pathfinder abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${PATHFINDER_SOURCE})
@@ -33,7 +33,7 @@ TARGET_LINK_LIBRARIES(pathfinder image)
 
 # some simple tests
 enable_testing()
-add_test(student-tests student-tests)
+add_test(test-deque test-deque)
 add_test(test00 pathfinder ${CMAKE_SOURCE_DIR}/tests/maze00.png output00.png)
 add_test(test00-compare compare ${CMAKE_SOURCE_DIR}/tests/output00.png output00.png)
 add_test(test01 pathfinder ${CMAKE_SOURCE_DIR}/tests/maze01.png output01.png)
