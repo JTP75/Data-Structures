@@ -26,13 +26,13 @@ SortedList<T, L>::~SortedList()
 }
 
 template <typename T, typename L>
-bool SortedList<T, L>::isEmpty()
+bool SortedList<T, L>::isEmpty() const noexcept
 {
   return plist.isEmpty();
 }
 
 template <typename T, typename L>
-std::size_t SortedList<T, L>::getLength()
+std::size_t SortedList<T, L>::getLength() const noexcept
 {
   return plist.getLength();
 }
@@ -62,7 +62,7 @@ void SortedList<T, L>::clear()
 }
 
 template <typename T, typename L>
-T SortedList<T, L>::getEntry(std::size_t position)
+T SortedList<T, L>::getEntry(std::size_t position) const
 {
   return plist.getEntry(position);
 }

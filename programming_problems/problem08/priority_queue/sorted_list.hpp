@@ -1,6 +1,6 @@
 
-#ifndef _SORTED_LIST_H_
-#define _SORTED_LIST_H_
+#ifndef _SORTED_LIST_HPP_
+#define _SORTED_LIST_HPP_
 
 #include "abstract_sorted_list.hpp"
 
@@ -24,10 +24,10 @@ public:
   ~SortedList();
 
   // determine if a list is empty
-  bool isEmpty();
+  bool isEmpty() const noexcept;
 
   // return current lenght of the list
-  std::size_t getLength();
+  std::size_t getLength() const noexcept;
 
   // insert item at ordered position in the list
   void insert(const T& item);
@@ -42,7 +42,7 @@ public:
   void clear();
 
   // get a copy of the item at position using 0-based indexing
-  T getEntry(std::size_t position);
+  T getEntry(std::size_t position) const;
 
   // get the position of the first occurance of item or negated position
   // where it would be inserted.
@@ -56,4 +56,4 @@ private:
 
 #include "sorted_list.tpp"
 
-#endif // _SORTED_LIST_H_
+#endif // _SORTED_LIST_HPP_

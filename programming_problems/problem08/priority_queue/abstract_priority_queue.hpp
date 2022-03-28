@@ -1,6 +1,6 @@
 
-#ifndef _ABSTRACT_PRIORITY_QUEUE_H_
-#define _ABSTRACT_PRIORITY_QUEUE_H_
+#ifndef _ABSTRACT_PRIORITY_QUEUE_HPP_
+#define _ABSTRACT_PRIORITY_QUEUE_HPP_
 
 // type T must be orderable (support operator<)
 template <typename T>
@@ -9,7 +9,7 @@ class AbstractPriorityQueue
 public:
 
   // return true if the priority queue is empty
-  virtual bool isEmpty() = 0;
+  virtual bool isEmpty() const = 0;
 
   // insert item into the queue
   virtual void add(const T& item) = 0;
@@ -21,4 +21,4 @@ public:
   virtual T peek() = 0;
 };
 
-#endif // _ABSTRACT_PRIORITY_QUEUE_H_
+#endif // _ABSTRACT_PRIORITY_QUEUE_HPP_

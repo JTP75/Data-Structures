@@ -1,5 +1,5 @@
-#ifndef _DYNAMIC_ARRAY_LIST_H_
-#define _DYNAMIC_ARRAY_LIST_H_
+#ifndef _DYNAMIC_ARRAY_LIST_HPP_
+#define _DYNAMIC_ARRAY_LIST_HPP_
 
 #include "abstract_list.hpp"
 
@@ -18,15 +18,15 @@ public:
   ~DynamicArrayList();
   
   // copy assignment
-  DynamicArrayList& operator=(DynamicArrayList x);
+  DynamicArrayList& operator=(const DynamicArrayList x);
 
   void swap(DynamicArrayList& y);
   
   // determine if a list is empty
-  bool isEmpty();
+  bool isEmpty() const noexcept;
 
   // return current lenght of the list
-  std::size_t getLength();
+  std::size_t getLength() const noexcept;
 
   // insert item at position in the list using 0-based indexing
   void insert(std::size_t position, const T& item);
@@ -38,7 +38,7 @@ public:
   void clear();
 
   // get a copy of the item at position using 0-based indexing
-  T getEntry(std::size_t position);
+  T getEntry(std::size_t position) const;
 
   // set the value of the item at position using 0-based indexing
   void setEntry(std::size_t position, const T& newValue);
@@ -53,4 +53,4 @@ private:
 
 #include "dynamic_array_list.tpp"
 
-#endif // _DYNAMIC_ARRAY_LIST_H_
+#endif // _DYNAMIC_ARRAY_LIST_HPP_

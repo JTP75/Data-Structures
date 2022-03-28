@@ -1,6 +1,6 @@
 
-#ifndef _PRIORITY_QUEUE_H_
-#define _PRIORITY_QUEUE_H_
+#ifndef _PRIORITY_QUEUE_HPP_
+#define _PRIORITY_QUEUE_HPP_
 
 #include "abstract_priority_queue.hpp"
 
@@ -12,7 +12,7 @@ class PriorityQueue: AbstractPriorityQueue<T>
 public:
 
   // return true if the priority queue is empty
-  bool isEmpty(){
+  bool isEmpty() const {
     return slist.isEmpty();
   }
 

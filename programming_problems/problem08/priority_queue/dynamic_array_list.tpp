@@ -26,7 +26,7 @@ DynamicArrayList<T>::~DynamicArrayList()
 }
 
 template <typename T>
-DynamicArrayList<T>& DynamicArrayList<T>::operator=(DynamicArrayList<T> x)
+DynamicArrayList<T>& DynamicArrayList<T>::operator=(const DynamicArrayList<T> x)
 {
   swap(x);
   return *this;
@@ -41,13 +41,13 @@ void DynamicArrayList<T>::swap(DynamicArrayList<T>& y)
 }
 
 template <typename T>
-bool DynamicArrayList<T>::isEmpty()
+bool DynamicArrayList<T>::isEmpty() const noexcept
 {
   return (size == 0);
 }
 
 template <typename T>
-std::size_t DynamicArrayList<T>::getLength()
+std::size_t DynamicArrayList<T>::getLength() const noexcept
 {
   return size;
 }
@@ -96,7 +96,7 @@ void DynamicArrayList<T>::clear()
 }
 
 template <typename T>
-T DynamicArrayList<T>::getEntry(std::size_t position)
+T DynamicArrayList<T>::getEntry(std::size_t position) const
 {
   if(position >= size) throw std::range_error("position out of range in getEntry");
 

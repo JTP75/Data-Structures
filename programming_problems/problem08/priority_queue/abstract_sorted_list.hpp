@@ -1,6 +1,6 @@
 
-#ifndef _ABSTRACT_SORTED_LIST_H_
-#define _ABSTRACT_SORTED_LIST_H_
+#ifndef _ABSTRACT_SORTED_LIST_HPP_
+#define _ABSTRACT_SORTED_LIST_HPP_
 
 #include <cstdlib>
 
@@ -8,10 +8,10 @@ template <typename T>
 class AbstractSortedList
 {
   // determine if a list is empty
-  virtual bool isEmpty() = 0;
+  virtual bool isEmpty() const noexcept = 0;
 
   // return current lenght of the list
-  virtual std::size_t getLength() = 0;
+  virtual std::size_t getLength() const noexcept = 0;
 
   // insert item at ordered position in the list
   virtual void insert(const T& item) = 0;
@@ -26,7 +26,7 @@ class AbstractSortedList
   virtual void clear() = 0;
 
   // get a copy of the item at position using 0-based indexing
-  virtual T getEntry(std::size_t position) = 0;
+  virtual T getEntry(std::size_t position) const = 0;
 
   // get the position of the first occurance of item or negated position
   // where it would be inserted.
@@ -34,4 +34,4 @@ class AbstractSortedList
 
 };
 
-#endif // _ABSTRACT_SORTED_LIST_H_
+#endif // _ABSTRACT_SORTED_LIST_HPP_
