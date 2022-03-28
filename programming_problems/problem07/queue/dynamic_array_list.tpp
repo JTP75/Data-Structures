@@ -24,21 +24,21 @@ DynamicArrayList<T>::~DynamicArrayList()
 }
 
 template <typename T>
-DynamicArrayList<T>& DynamicArrayList<T>::operator=(DynamicArrayList<T> x)
+DynamicArrayList<T>& DynamicArrayList<T>::operator=(const DynamicArrayList<T> x)
 {
   //TODO
   return *this;
 }
 
 template <typename T>
-bool DynamicArrayList<T>::isEmpty()
+bool DynamicArrayList<T>::isEmpty() const noexcept
 {
   //TODO
   return false;
 }
 
 template <typename T>
-std::size_t DynamicArrayList<T>::getLength()
+std::size_t DynamicArrayList<T>::getLength() const noexcept
 {
   //TODO
   return 0;
@@ -63,7 +63,7 @@ void DynamicArrayList<T>::clear()
 }
 
 template <typename T>
-T DynamicArrayList<T>::getEntry(std::size_t position)
+T DynamicArrayList<T>::getEntry(std::size_t position) const
 {
   //TODO
   return T();

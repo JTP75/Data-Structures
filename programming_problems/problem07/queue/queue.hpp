@@ -1,6 +1,6 @@
 
-#ifndef _QUEUE_H_
-#define _QUEUE_H_
+#ifndef _QUEUE_HPP_
+#define _QUEUE_HPP_
 
 #include "abstract_queue.hpp"
 #include "abstract_list.hpp"
@@ -23,7 +23,7 @@ public:
   // not needed, default is ok
 
   // return true is the queue is empty
-  bool isEmpty();
+  bool isEmpty() const;
 
   // enqueue (add) newEntry into the queue back
   // throw exception if not possible
@@ -63,9 +63,9 @@ T Queue<T,L>::peekFront()
 }
 
 template <typename T, typename L>
-bool Queue<T,L>::isEmpty()
+bool Queue<T,L>::isEmpty() const
 {
   return internal_list.isEmpty();
 }
 
-#endif // _QUEUE_H_
+#endif // _QUEUE_HPP_

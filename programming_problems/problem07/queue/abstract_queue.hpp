@@ -1,6 +1,6 @@
 
-#ifndef _ABSTRACT_QUEUE_H_
-#define _ABSTRACT_QUEUE_H_
+#ifndef _ABSTRACT_QUEUE_HPP_
+#define _ABSTRACT_QUEUE_HPP_
 
 template <typename T>
 class AbstractQueue
@@ -8,7 +8,7 @@ class AbstractQueue
 public:
 
   // return true is the queue is empty
-  virtual bool isEmpty() = 0;
+  virtual bool isEmpty() const = 0;
 
   // enqueue (add) newEntry into the queue back
   // throw exception if not possible
@@ -23,4 +23,4 @@ public:
   virtual T peekFront() = 0;
 };
 
-#endif // _ABSTRACT_QUEUE_H_
+#endif // _ABSTRACT_QUEUE_HPP_
