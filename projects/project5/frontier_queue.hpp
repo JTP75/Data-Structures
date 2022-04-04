@@ -14,23 +14,22 @@ public:
 
   /* push a State with value p, cost, and heuristic into the frontier.
    * This should be a O(log n) operation
+   * You will need to create a state from the passed inputs, and then add it to the queue.
    */
   void push(const T &p, std::size_t cost, std::size_t heur);
 
-  /* this will be a queue of states.
-   * you need to create a state from the passed inputs, and then add it to the queue.
-   * pop the state from the frontier with the smallest f-cost
+  /* pop the state from the frontier with the smallest f-cost
    * This should be a O(log n) operation
    */
   State<T> pop();
 
-  /* Returns true if the T p is in the frontier
+  /* Returns true if the value T p is in the frontier
    * This may be at most an O(n) operation
    */
   bool contains(const T &p);
 
-  /* Replaces a state in the container if the path cost is lower.
-   * The frontier should be updated to reflect the new value.
+  /* Replaces a state if the path cost is lower.
+   * The frontier must still be a valid min heap after replacement.
    * This should be at most a O(n) operation.
    */
   void replaceif(const T &p, std::size_t cost);
