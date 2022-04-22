@@ -1,5 +1,8 @@
 #include "adjacency_matrix_graph.hpp"
 
+template <typename LabelType>
+AdjacencyMatrixGraph<LabelType>::AdjacencyMatrixGraph() {}
+
 template <typename LabelType> 
 int AdjacencyMatrixGraph<LabelType>::getNumVertices() const {}
 

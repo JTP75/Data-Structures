@@ -1,5 +1,8 @@
 #include "adjacency_list_graph.hpp"
 
+template <typename LabelType>
+AdjacencyListGraph<LabelType>::AdjacencyListGraph() {}
+
 template <typename LabelType> 
 int AdjacencyListGraph<LabelType>::getNumVertices() const {}
 

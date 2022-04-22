@@ -8,6 +8,8 @@ class AdjacencyListGraph: public AbstractGraph<LabelType>
 {
     public:
 
+        AdjacencyListGraph();
+        
         int getNumVertices() const;
         
         int getNumEdges() const;

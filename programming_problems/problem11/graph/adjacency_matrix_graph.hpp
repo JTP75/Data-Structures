@@ -8,6 +8,8 @@ class AdjacencyMatrixGraph: public AbstractGraph<LabelType>
 {
     public:
 
+        AdjacencyMatrixGraph();
+
         int getNumVertices() const;
         
         int getNumEdges() const;
