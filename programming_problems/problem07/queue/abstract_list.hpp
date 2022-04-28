@@ -30,4 +30,4 @@ public:
   virtual void setEntry(std::size_t position, const T& newValue) = 0;
 };
 
-#endif // _ABSTRACT_LIST_HPP_
+#endif 
