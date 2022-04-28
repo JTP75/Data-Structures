@@ -4,7 +4,7 @@
 
 #include <cstdlib>
 
-template<typename T>
+template <typename T>
 class AbstractList
 {
 public:
@@ -14,10 +14,10 @@ public:
   // return current length of the list
   virtual std::size_t getLength() const noexcept = 0;
 
-  // insert item at position in the list using 1-based indexing
+  // insert item at position in the list using 0-based indexing
   virtual bool insert(std::size_t position, const T& item) = 0;
 
-  // remove item at position in the list using 1-based indexing
+  // remove item at position in the list using 0-based indexing
   virtual bool remove(std::size_t position) = 0;
 
   // remove all items from the list
