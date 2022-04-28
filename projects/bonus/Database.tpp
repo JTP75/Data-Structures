@@ -37,6 +37,7 @@ void Database<T>::clear() {
 template <typename T>
 T Database<T>::getValue(std::string key) {
     // TODO
+    return T();
 }
 
 template <typename T>
@@ -48,4 +49,5 @@ bool Database<T>::contains(std::string key) {
 template <typename T>
 std::vector<T> Database<T>::getAllEntries(int keyIndex) {
     // TODO    
+    return std::vector<T>();
 }
