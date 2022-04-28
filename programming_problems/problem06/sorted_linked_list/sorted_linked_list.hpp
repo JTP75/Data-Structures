@@ -41,10 +41,9 @@ public:
   void clear();
 
   // get a copy of the item at position using 0-based indexing
-  T getEntry(std::size_t position);
+  T getEntry(std::size_t position) const;
 
-  // get the position of the first occurance of item or negated position
-  // where it would be inserted.
+  // get the position of the first occurance of item
   long int getPosition(const T& newValue);
 
 private:

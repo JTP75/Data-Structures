@@ -26,7 +26,7 @@ class AbstractSortedList
   virtual void clear() = 0;
 
   // get a copy of the item at position using 0-based indexing
-  virtual T getEntry(std::size_t position) = 0;
+  virtual T getEntry(std::size_t position) const = 0;
 
   // get the position of the first occurance of item 
   virtual long int getPosition(const T& newValue) = 0;

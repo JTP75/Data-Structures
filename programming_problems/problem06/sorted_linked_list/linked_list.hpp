@@ -28,10 +28,10 @@ public:
   std::size_t getLength() const noexcept;
 
   // insert item at position in the list
-  bool insert(std::size_t position, const T& item);
+  void insert(std::size_t position, const T& item);
 
   // remove item at position in the list
-  bool remove(std::size_t position);
+  void remove(std::size_t position);
 
   // remove all items from the list
   void clear();
