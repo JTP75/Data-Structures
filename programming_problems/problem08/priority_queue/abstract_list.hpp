@@ -1,6 +1,7 @@
 
 #ifndef _ABSTRACT_LIST_HPP_
 #define _ABSTRACT_LIST_HPP_
+
 #include <cstdlib>
 
 template <typename T>
@@ -10,7 +11,7 @@ public:
   // determine if a list is empty
   virtual bool isEmpty() const noexcept = 0;
 
-  // return current length of the list
+  // return current lenght of the list
   virtual std::size_t getLength() const noexcept = 0;
 
   // insert item at position in the list using 0-based indexing
@@ -29,4 +30,4 @@ public:
   virtual void setEntry(std::size_t position, const T& newValue) = 0;
 };
 
-#endif // _ABSTRACT_LIST_HPP_
+#endif 
