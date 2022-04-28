@@ -23,10 +23,10 @@ public:
   void swap(DynamicArrayList& x, DynamicArrayList& y);
   
   // determine if a list is empty
-  bool isEmpty();
+  bool isEmpty() const noexcept;
 
   // return current lenght of the list
-  std::size_t getLength();
+  std::size_t getLength() const noexcept;
 
   // insert item at position in the list using 0-based indexing
   void insert(std::size_t position, const T& item);
@@ -38,7 +38,7 @@ public:
   void clear();
 
   // get a copy of the item at position using 0-based indexing
-  T getEntry(std::size_t position);
+  T getEntry(std::size_t position) const;
 
   // set the value of the item at position using 0-based indexing
   void setEntry(std::size_t position, const T& newValue);
