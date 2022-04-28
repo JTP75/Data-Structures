@@ -26,13 +26,13 @@ SortedLinkedList<T>::~SortedLinkedList()
 }
 
 template <typename T>
-bool SortedLinkedList<T>::isEmpty()
+bool SortedLinkedList<T>::isEmpty() const noexcept
 {
   return LinkedList<T>::isEmpty();
 }
 
 template <typename T>
-std::size_t SortedLinkedList<T>::getLength()
+std::size_t SortedLinkedList<T>::getLength() const noexcept
 {
   return LinkedList<T>::getLength();
 }

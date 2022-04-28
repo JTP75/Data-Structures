@@ -23,10 +23,10 @@ public:
   ~SortedLinkedList();
 
   // determine if a list is empty
-  bool isEmpty();
+  bool isEmpty() const noexcept;
 
   // return current lenght of the list
-  std::size_t getLength();
+  std::size_t getLength() const noexcept;
 
   // insert item at ordered position in the list
   void insert(const T& item);
