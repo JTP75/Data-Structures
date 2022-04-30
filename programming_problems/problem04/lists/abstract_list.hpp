@@ -23,10 +23,10 @@ public:
   // remove all items from the list
   virtual void clear() = 0;
 
-  // get a copy of the item at position using 1-based indexing
+  // get a copy of the item at position using 0-based indexing
   virtual T getEntry(std::size_t position) const = 0;
 
-  // set the value of the item at position using 1-based indexing
+  // set the value of the item at position using 0-based indexing
   virtual void setEntry(std::size_t position, const T& newValue) = 0;
   
 };
