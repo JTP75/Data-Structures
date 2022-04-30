@@ -44,7 +44,8 @@ public:
   T getEntry(std::size_t position) const;
 
   // get the position of the first occurance of item
-  long int getPosition(const T& newValue);
+  // return -1 if not in list
+  long int getPosition(const T& item);
 
 private:
 

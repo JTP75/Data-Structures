@@ -3,6 +3,7 @@
 #include "catch.hpp"
 
 #include "sorted_linked_list.hpp"
+#include "linked_list.hpp"
 typedef SortedLinkedList<char> ListType;
 
 template class SortedLinkedList<int>;
@@ -117,6 +118,32 @@ TEST_CASE("Testing getEntry", "[sorted linked list]") {
   }
 }
 
+TEST_CASE("Testing getPosition empty", "[sorted linked list]") {
+  ListType lst;
+  
+  // empty list
+  REQUIRE(lst.getPosition('a') == -1);
+}
+
+TEST_CASE("Testing getPosition", "[sorted linked list]") {
+  ListType lst;
+  
+  lst.insert('a');
+  lst.insert('d');
+  lst.insert('e');
+  lst.insert('c');
+  lst.insert('b');
+
+  REQUIRE(lst.getPosition('a') == 0);
+  REQUIRE(lst.getPosition('b') == 1);
+  REQUIRE(lst.getPosition('c') == 2);
+  REQUIRE(lst.getPosition('d') == 3);
+  REQUIRE(lst.getPosition('e') == 4);
+  // not in list
+  REQUIRE(lst.getPosition('f') == -1);
+
+}
+
 TEST_CASE("Testing copy", "[sorted linked list]") {
   ListType lst;
 
@@ -174,11 +201,31 @@ TEST_CASE("Testing assignment to/from empty", "[sorted linked list]") {
   REQUIRE(lst_copy.getLength() == 0);
 }
 
+
+TEST_CASE("Testing list exceptions", "[linked list]") {
+  LinkedList<char> lst;
+
+  CHECK_THROWS_AS(lst.remove(0), std::range_error);
+  CHECK_THROWS_AS(lst.insert(-1,'a'), std::range_error);
+  CHECK_THROWS_AS(lst.getEntry(0), std::range_error);
+  CHECK_THROWS_AS(lst.setEntry(0,'a'), std::range_error);
+
+  lst.insert(0,'a');
+  lst.insert(1,'b');
+
+  CHECK_THROWS_AS(lst.remove(5), std::range_error);
+  CHECK_THROWS_AS(lst.insert(5,'c'), std::range_error);
+  CHECK_THROWS_AS(lst.getEntry(5), std::range_error);
+  CHECK_THROWS_AS(lst.setEntry(5,'c'), std::range_error);
+
+}
+
 TEST_CASE("Testing exceptions", "[sorted linked list]") {
   ListType lst;
 
   CHECK_THROWS_AS(lst.removeAt(0), std::range_error);
   CHECK_THROWS_AS(lst.getEntry(0), std::range_error);
+  CHECK_THROWS_AS(lst.remove(0), std::range_error);
 
   lst.insert('a');
   lst.insert('b');

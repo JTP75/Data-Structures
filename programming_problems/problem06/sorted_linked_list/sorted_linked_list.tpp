@@ -72,7 +72,7 @@ T SortedLinkedList<T>::getEntry(std::size_t position) const
 }
 
 template <typename T>
-long int SortedLinkedList<T>::getPosition(const T& newValue)
+long int SortedLinkedList<T>::getPosition(const T& item)
 {
   // todo
   return 0;
