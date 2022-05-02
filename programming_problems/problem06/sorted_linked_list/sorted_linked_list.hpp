@@ -25,25 +25,25 @@ public:
   // determine if a list is empty
   bool isEmpty() const noexcept;
 
-  // return current lenght of the list
+  // return current length of the list
   std::size_t getLength() const noexcept;
 
-  // insert item at ordered position in the list
+  // insert item at sorted position in the list
   void insert(const T& item);
 
-  // remove first occurance of item from the list
+  // remove first occurrence of item from the list
   void remove(const T& item);
 
-  // remove item at position in the list using 0-based indexing
+  // remove item at position in the list 
   void removeAt(std::size_t position);
 
   // remove all items from the list
   void clear();
 
-  // get a copy of the item at position using 0-based indexing
+  // get a copy of the item at position 
   T getEntry(std::size_t position) const;
 
-  // get the position of the first occurance of item
+  // get the position of the first occurrence of item
   // return -1 if not in list
   long int getPosition(const T& item);
 

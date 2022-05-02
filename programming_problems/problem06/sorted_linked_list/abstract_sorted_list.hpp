@@ -10,13 +10,13 @@ class AbstractSortedList
   // determine if a list is empty
   virtual bool isEmpty() const noexcept = 0;
 
-  // return current lenght of the list
+  // return current length of the list
   virtual std::size_t getLength() const noexcept = 0;
 
-  // insert item at ordered position in the list
+  // insert item at sorted position in the list
   virtual void insert(const T& item) = 0;
 
-  // remove first occurance of item from the list
+  // remove first occurrence of item from the list
   virtual void remove(const T& item) = 0;
 
   // remove item at position in the list 
@@ -28,10 +28,10 @@ class AbstractSortedList
   // get a copy of the item at position
   virtual T getEntry(std::size_t position) const = 0;
 
-  // get the position of the first occurance of item
+  // get the position of the first occurrence of item
   // return -1 if not in list
-  virtual long int getPosition(const T& item) = 0;
+  virtual long int getPosition(const T& newValue) = 0;
 
 };
 
-#endif 
+#endif // _ABSTRACT_SORTED_LIST_HPP_
