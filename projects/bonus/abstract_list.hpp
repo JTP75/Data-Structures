@@ -14,19 +14,19 @@ public:
   // return current length of the list
   virtual std::size_t getLength() const noexcept = 0;
 
-  // insert item at position in the list using 0-based indexing
+  // insert item at position in the list 
   virtual bool insert(std::size_t position, const T& item) = 0;
 
-  // remove item at position in the list using 0-based indexing
+  // remove item at position in the list 
   virtual bool remove(std::size_t position) = 0;
 
   // remove all items from the list
   virtual void clear() = 0;
 
-  // get a copy of the item at position using 1-based indexing
+  // get a copy of the item at position 
   virtual T getEntry(std::size_t position) const = 0;
 
-  // set the value of the item at position using 1-based indexing
+  // set the value of the item at position 
   virtual void setEntry(std::size_t position, const T& newValue) = 0;
   
 };
