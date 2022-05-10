@@ -20,6 +20,8 @@ public:
   // copy assignment
   DynamicArrayList& operator=(const DynamicArrayList x);
 
+  void swap(DynamicArrayList& y);
+  
   // determine if a list is empty
   bool isEmpty() const noexcept;
 
@@ -44,13 +46,11 @@ public:
 private:
 
   T * data;
-  // number of elements that can be added before reallocation (space remaining)
   std::size_t capacity;
-  // current allocated memory
   std::size_t size;
   
 };
 
 #include "dynamic_array_list.tpp"
 
-#endif // _DYNAMIC_ARRAY_LIST_H_
+#endif // _DYNAMIC_ARRAY_LIST_HPP_
