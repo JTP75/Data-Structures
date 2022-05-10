@@ -144,6 +144,25 @@ TEST_CASE("Testing getPosition", "[sorted linked list]") {
 
 }
 
+
+TEST_CASE("Testing init from list", "[sorted linked list]") {
+  LinkedList<char> unsorted;
+  
+  unsorted.insert(0,'a');
+  unsorted.insert(1,'d');
+  unsorted.insert(2,'e');
+  unsorted.insert(3,'c');
+  unsorted.insert(4,'b');
+
+  ListType sorted(unsorted);
+
+  REQUIRE(sorted.getPosition('a') == 0);
+  REQUIRE(sorted.getPosition('b') == 1);
+  REQUIRE(sorted.getPosition('c') == 2);
+  REQUIRE(sorted.getPosition('d') == 3);
+  REQUIRE(sorted.getPosition('e') == 4);
+}
+
 TEST_CASE("Testing copy", "[sorted linked list]") {
   ListType lst;
 

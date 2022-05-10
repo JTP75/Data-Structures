@@ -1,6 +1,6 @@
 
-#ifndef _SORTED_LINKED_LIST_H_
-#define _SORTED_LINKED_LIST_H_
+#ifndef _SORTED_LINKED_LIST_HPP_
+#define _SORTED_LINKED_LIST_HPP_
 
 #include "abstract_sorted_list.hpp"
 #include "linked_list.hpp"
@@ -12,6 +12,9 @@ public:
 
   // constructor
   SortedLinkedList();
+
+  // constructor from list (should sort the input list)
+  SortedLinkedList(LinkedList<T> unsorted_list);
 
   // copy constructor
   SortedLinkedList(const SortedLinkedList & x);
@@ -55,4 +58,4 @@ private:
 
 #include "sorted_linked_list.tpp"
 
-#endif // _SORTED_LINKED_LIST_H_
+#endif // _SORTED_LINKED_LIST_HPP_

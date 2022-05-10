@@ -7,6 +7,11 @@ SortedLinkedList<T>::SortedLinkedList(): LinkedList<T>()
 }
 
 template <typename T>
+SortedLinkedList<T>::SortedLinkedList(LinkedList<T> unsorted_list) 
+{
+}
+
+template <typename T>
 SortedLinkedList<T>::SortedLinkedList(const SortedLinkedList<T> & x):
   LinkedList<T>(x)
 {
