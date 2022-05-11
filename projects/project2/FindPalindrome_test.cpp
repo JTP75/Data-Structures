@@ -5,10 +5,18 @@
 
 // There should be at least one test per FindPalindrome method
 
-TEST_CASE( "Test FindPalindrome add a non-allowable word", "[FindPalindrome]" )
+TEST_CASE( "Test adding a non-allowable word", "[FindPalindrome]" )
 {
-	INFO("Hint: add a single non-allowable word");
 	FindPalindrome b;
 	REQUIRE(!b.add("kayak1"));
+}
+
+TEST_CASE("test recursion", "[FindPalindrome]"){
+	FindPalindrome b;
+
+	REQUIRE(b.add("a"));
+	REQUIRE(b.add("AA"));
+	REQUIRE(b.add("AaA"));
+	REQUIRE(b.number() == 6);
 }
 
