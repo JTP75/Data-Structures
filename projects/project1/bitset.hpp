@@ -1,5 +1,7 @@
 #ifndef BITSET_HPP
 #define BITSET_HPP
+#include <stdint.h>
+#include <stdlib.h>
 #include <string>
 
 class Bitset{
