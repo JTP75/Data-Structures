@@ -13,27 +13,27 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/lib)
 ADD_EXECUTABLE(compare compare.cpp)
 TARGET_LINK_LIBRARIES(compare image)
 
-set(DEQUE_SOURCE
-  Node.hpp Node.tpp linked_list.hpp linked_list.tpp deque.hpp deque.tpp)
+set(QUEUE_SOURCE
+  dynamic_array_list.hpp dynamic_array_list.tpp queue.hpp queue.tpp)
 
 set(TEST_SOURCE
-  test_deque.cpp)
+  test_queue.cpp)
 
 set(PATHFINDER_SOURCE pathfinder.cpp)
 
-set(SOURCE ${DEQUE_SOURCE} ${TEST_SOURCE} ${PATHFINDER_SOURCE})
+set(SOURCE ${QUEUE_SOURCE} ${TEST_SOURCE} ${PATHFINDER_SOURCE})
 
 # create unittests
-add_executable(test-deque catch.hpp abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
-TARGET_LINK_LIBRARIES(test-deque)
+add_executable(test-queue catch.hpp abstract_list.hpp abstract_queue.hpp ${DEQUE_SOURCE} ${TEST_SOURCE})
+TARGET_LINK_LIBRARIES(test-queue)
 
 # build executable
-add_executable(pathfinder abstract_list.hpp abstract_deque.hpp ${DEQUE_SOURCE} ${PATHFINDER_SOURCE})
+add_executable(pathfinder abstract_list.hpp abstract_queue.hpp ${QUEUE_SOURCE} ${PATHFINDER_SOURCE})
 TARGET_LINK_LIBRARIES(pathfinder image)
 
 # some simple tests
 enable_testing()
-add_test(test-deque test-deque)
+add_test(test-queue test-queue)
 add_test(test00 pathfinder ${CMAKE_SOURCE_DIR}/tests/maze00.png output00.png)
 add_test(test00-compare compare ${CMAKE_SOURCE_DIR}/tests/output00.png output00.png)
 add_test(test01 pathfinder ${CMAKE_SOURCE_DIR}/tests/maze01.png output01.png)
