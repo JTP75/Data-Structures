@@ -5,7 +5,7 @@ project(priorityqueue CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE test_priority_queue.cpp abstract_list.hpp abstract_priority_queue.hpp abstract_sorted_list.hpp dynamic_array_list.hpp dynamic_array_list.tpp sorted_list.hpp sorted_list.tpp priority_queue.hpp)
+set(SOURCE test_priority_queue.cpp abstract_list.hpp abstract_priority_queue.hpp abstract_sorted_list.hpp dynamic_array_list.hpp dynamic_array_list.tpp sorted_list.hpp sorted_list.tpp priority_queue.hpp priority_queue.tpp)
 
 # create unittests
 add_executable(test-priority-queue test_priority_queue.cpp catch.hpp ${SOURCE})
