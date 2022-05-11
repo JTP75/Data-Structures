@@ -175,7 +175,7 @@ TEST_CASE( "Test XMLParser parseTokenizedInput Handout-0", "[XMLParser]" )
 
 TEST_CASE( "Test XMLParser Final Handout-0", "[XMLParser]" )
 {
-	   INFO("Hint: Product");
+	   INFO("Hint: TestFile");
 		// Create an instance of XMLParse
 		XMLParser myXMLParser;
 		ifstream myfile ("./TestFile.txt");
