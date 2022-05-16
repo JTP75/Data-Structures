@@ -5,11 +5,8 @@
 #include "dynamic_array_list.hpp"
 #include "queue.hpp"
 
-TEST_CASE("Testing 1", "[queue]") {
-  // a queue, holding ints, using a DynamicArrayList as the container
+TEST_CASE("Testing all", "[queue]") {
   Queue<int, DynamicArrayList<int>> queue;
-
-  REQUIRE(queue.isEmpty() == 1);
 
   queue.enqueue(12);
   REQUIRE(!queue.isEmpty());
