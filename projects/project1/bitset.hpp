@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string>
+#include <iostream>
+#include <vector>
 
 class Bitset
 {
@@ -11,7 +13,6 @@ class Bitset
     Bitset(intmax_t sz);
     Bitset(const std::string &value);
     ~Bitset();
-    Bitset(const Bitset &) = delete;
     Bitset & operator=(const Bitset &) = delete;
     intmax_t size() const;
     bool good() const;
