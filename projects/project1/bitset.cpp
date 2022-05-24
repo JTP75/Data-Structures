@@ -2,40 +2,31 @@
 
 Bitset::Bitset()
 {
-    size = 8;
-    ADTPtr = new uint8_t[size];
+    BSsize = 8;
+    ADTPtr = new uint8_t[BSsize];
+    isValid = true;
 
-    for(intmax_t i=0; i<size; i++)
+    for(intmax_t i=0; i<BSsize; i++)
         *(ADTPtr+i) = 0;
 }
 Bitset::Bitset(intmax_t sz)
 {
-    if(sz > 0)
-    {
-        size = sz;
-        ADTPtr = new uint8_t[size];
-        for(intmax_t i=0; i<size; i++)
-            *(ADTPtr+i) = 0;
-    }
-    else
-    {
-        std::cout << "ERROR! Invalid Bitset size";
-        exit(EXIT_FAILURE);
-    }
+    isValid = sz > 0;
+    BSsize = sz;
+    ADTPtr = new uint8_t[BSsize];
+    for(intmax_t i=0; i<BSsize; i++)
+        *(ADTPtr+i) = 0;
 }
 Bitset::Bitset(const std::string &value)
 {
-    size = value.length();
-    ADTPtr = new uint8_t[size];
+    BSsize = value.length();
+    ADTPtr = new uint8_t[BSsize];
     std::vector<uint8_t> valVec(value.begin(), value.end());
+    isValid = true;
 
-    for(intmax_t i=0; i<size; i++)
+    for(intmax_t i=0; i<BSsize; i++)
     {
-        if(value[i] != 1 && value[i] != 0)
-        {
-            std::cout << "ERROR! Input string contains invalid bits";
-            exit(EXIT_FAILURE);
-        }
+        isValid = isValid && (value[i]==1 || value[i]==0);      // if bitset is invalid, it cant become valid
         *(ADTPtr+i) = valVec[i];
     }
 }
@@ -43,4 +34,42 @@ Bitset::~Bitset()
 {
     
 }
+intmax_t Bitset::size() const {return BSsize;}
+bool Bitset::good() const {return isValid;}
+void Bitset::set(intmax_t index)
+{
+    isValid = isValid && (index >= 0 || index < BSsize);    // invalid bitsets can not become valid.
+    *(ADTPtr+index) = 1;
+}
+void Bitset::reset(intmax_t index)
+{
+    isValid = isValid && (index >= 0 || index < BSsize);
+    *(ADTPtr+index) = 0;
+}
+void Bitset::toggle(intmax_t index)
+{
+    isValid = isValid && (index >= 0 || index < BSsize);
+    *(ADTPtr+index) = *(ADTPtr+index)==1 ? 0 : 1;
+}
+bool Bitset::test(intmax_t index)
+{
+    isValid = isValid && (index >= 0 || index < BSsize);
+    return isValid && *(ADTPtr+index)==1;
+}
+std::string Bitset::asString() const
+{
+    std::string s = "";
+    for(intmax_t i=0; i<BSsize; i++)
+        s += std::to_string(*(ADTPtr+i));
+    return s;
+}
+
+
+
+
+
+
+
+
+
 

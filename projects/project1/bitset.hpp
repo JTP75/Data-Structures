@@ -24,7 +24,8 @@ class Bitset
 
   private:
     uint8_t *ADTPtr;
-    intmax_t size;
+    intmax_t BSsize;
+    bool isValid;
 };
 
 #endif
