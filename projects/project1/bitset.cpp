@@ -21,13 +21,12 @@ Bitset::Bitset(const std::string &value)
 {
     BSsize = value.length();
     ADTPtr = new uint8_t[BSsize];
-    std::vector<uint8_t> valVec(value.begin(), value.end());
     isValid = true;
-
+    const uint8_t* tmpPtr = reinterpret_cast<const uint8_t*>(value.c_str());
     for(intmax_t i=0; i<BSsize; i++)
     {
-        isValid = isValid && (value[i]==1 || value[i]==0);      // if bitset is invalid, it cant become valid
-        *(ADTPtr+i) = valVec[i];
+        isValid = isValid && (value[i]==1 || value[i]==0);
+        *(ADTPtr+i) = *(tmpPtr+i);
     }
 }
 Bitset::~Bitset()
