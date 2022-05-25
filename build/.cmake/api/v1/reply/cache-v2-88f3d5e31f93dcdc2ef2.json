@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add/build"
+			"value" : "/home/jtp75/Desktop/add/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -463,7 +463,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add"
+			"value" : "/home/jtp75/Desktop/add"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -999,7 +999,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add/build"
+			"value" : "/home/jtp75/Desktop/add/build"
 		},
 		{
 			"name" : "add_IS_TOP_LEVEL",
@@ -1023,7 +1023,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add"
+			"value" : "/home/jtp75/Desktop/add"
 		}
 	],
 	"kind" : "cache",

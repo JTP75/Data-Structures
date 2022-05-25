@@ -58,8 +58,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add/build",
-		"source" : "/home/jtp75/Desktop/ECE0302_JTP75/starter-code-ece0302/programming_problems/problem00/add"
+		"build" : "/home/jtp75/Desktop/add/build",
+		"source" : "/home/jtp75/Desktop/add"
 	},
 	"version" : 
 	{

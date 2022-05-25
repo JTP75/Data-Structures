@@ -5,26 +5,29 @@
 #include <iostream>
 #include "bitset.hpp"
 
-TEST_CASE( "Test bitset default construction", "[bitset]" ) {
-
+TEST_CASE( "Test bitset default construction", "[bitset]" )
+{
     Bitset b;  
     REQUIRE(b.size() == 8);
     REQUIRE(b.good());
 }
 
-TEST_CASE( "Test bitset construction with asString", "[bitset]" ) {
+TEST_CASE( "Test bitset construction with asString", "[bitset]" )
+{
     Bitset b;
     REQUIRE(b.asString().compare("00000000") == 0);
 }
 
-TEST_CASE( "Test bitset construction size", "[bitset]" ) {
+TEST_CASE( "Test bitset construction size", "[bitset]" )
+{
     Bitset b(64);
     std::string s(64, '0');
     REQUIRE(b.size() == 64);
     REQUIRE(b.good());
 }
 
-TEST_CASE( "Test bitset construction string", "[bitset]" ) {
+TEST_CASE( "Test bitset construction string", "[bitset]" )
+{
     std::string s("00101110000011000001101000001");
     Bitset b(s);
     REQUIRE(b.size() == s.size());
@@ -32,13 +35,15 @@ TEST_CASE( "Test bitset construction string", "[bitset]" ) {
     REQUIRE(b.asString().compare(s) == 0);
 }
 
-TEST_CASE( "Test bitset construction invalid string", "[bitset]" ) {
+TEST_CASE( "Test bitset construction invalid string", "[bitset]" )
+{
     std::string s("00101110000011002001101000001");
     Bitset b(s);
     REQUIRE_FALSE(b.good());
 }
 
-TEST_CASE( "Test set", "[bitset]" ) {
+TEST_CASE( "Test set", "[bitset]" )
+{
     std::string s("00010001");
     Bitset b;
     b.set(3);
@@ -48,7 +53,8 @@ TEST_CASE( "Test set", "[bitset]" ) {
     REQUIRE(b.asString().compare(s) == 0);
 }
 
-TEST_CASE( "Test set with default init", "[bitset]" ) {
+TEST_CASE( "Test set with default init", "[bitset]" )
+{
     std::string s("00010001");
     Bitset b;
     b.set(3);
@@ -58,7 +64,8 @@ TEST_CASE( "Test set with default init", "[bitset]" ) {
     REQUIRE(b.asString().compare(s) == 0);
 }
 
-TEST_CASE( "Test set with size init", "[bitset]" ) {
+TEST_CASE( "Test set with size init", "[bitset]" )
+{
     std::string s("00010");
     Bitset b(5);
     b.set(3);
@@ -67,7 +74,8 @@ TEST_CASE( "Test set with size init", "[bitset]" ) {
     REQUIRE(b.asString().compare(s) == 0);
 }
 
-TEST_CASE( "Test combined", "[bitset]" ) {
+TEST_CASE( "Test combined", "[bitset]" )
+{
     std::string s((1<<15) + 3, '0');
     Bitset b(s);
     REQUIRE(b.size() == s.size());
