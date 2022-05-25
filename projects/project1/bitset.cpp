@@ -29,15 +29,12 @@ Bitset::Bitset(const std::string &value)
         *(ADTPtr+i) = *(tmpPtr+i);
     }
 }
-Bitset::~Bitset()
-{
-    
-}
+Bitset::~Bitset(){delete [] ADTPtr;}
 intmax_t Bitset::size() const {return BSsize;}
 bool Bitset::good() const {return isValid;}
 void Bitset::set(intmax_t index)
 {
-    isValid = isValid && (index >= 0 || index < BSsize);    // invalid bitsets can not become valid.
+    isValid = isValid && (index >= 0 || index < BSsize);
     *(ADTPtr+index) = 1;
 }
 void Bitset::reset(intmax_t index)
@@ -62,7 +59,6 @@ std::string Bitset::asString() const
         s += std::to_string(*(ADTPtr+i));
     return s;
 }
-
 
 
 
