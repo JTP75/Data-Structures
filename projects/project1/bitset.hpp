@@ -23,7 +23,7 @@ class Bitset
   private:
     uint8_t *ADTPtr;                                // pointer to first uint8_t element of array
     intmax_t BSsize;                                // length of array
-    bool isValid;                                   // validity
+    bool isValid;                                   // validity --- NOTE: invalid bitsets CANNOT become valid
 };
 
 #endif

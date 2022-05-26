@@ -13,7 +13,7 @@ Bitset::Bitset(intmax_t sz)
 {
     isValid = sz > 0;
     BSsize = sz;
-    ADTPtr = new uint8_t[BSsize];
+    ADTPtr = new uint8_t[std::abs(BSsize)];
     for(intmax_t i=0; i<BSsize; i++)
         *(ADTPtr+i) = 0;
 }
@@ -22,11 +22,12 @@ Bitset::Bitset(const std::string &value)
     BSsize = value.length();
     ADTPtr = new uint8_t[BSsize];
     isValid = true;
-    const uint8_t* tmpPtr = reinterpret_cast<const uint8_t*>(value.c_str());
+
     for(intmax_t i=0; i<BSsize; i++)
     {
-        isValid = isValid && (value[i]==1 || value[i]==0);
-        *(ADTPtr+i) = *(tmpPtr+i);
+        uint8_t thisVal = value[i] - 48;
+        isValid = isValid && (thisVal==1 || thisVal==0);        // isValid can only be true if it was true before
+        *(ADTPtr+i) = thisVal;
     }
 }
 Bitset::~Bitset(){delete [] ADTPtr;}
