@@ -38,16 +38,22 @@ TEST_CASE( "Test bitset construction invalid string", "[bitset]" ) {
     REQUIRE_FALSE(b.good());
 }
 
-TEST_CASE( "Test set", "[bitset]" ) {
-    std::string s("00110011");
-    Bitset b;
-    b.toggle(2);
-    b.set(3);
-    b.set(6);
-    b.set(7);
-    REQUIRE(b.size() == 8);
+TEST_CASE( "Test bitset construction with 8-bit string", "[bitset]" ) {
+    std::string s("00100010");
+    Bitset b(s);
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
+}
+
+TEST_CASE( "Test set", "[bitset]" ) {
+    std::string s("00010001");
+    std::string t; 
+    Bitset b(s);
+    b.set(3); t = b.asString();
+    b.set(7); t = b.asString();
+    REQUIRE(b.size() == 8);
+    REQUIRE(b.good());
+    REQUIRE(t.compare(s) == 0);
 }
 
 TEST_CASE( "Test set with default init", "[bitset]" ) {
@@ -61,7 +67,7 @@ TEST_CASE( "Test set with default init", "[bitset]" ) {
 }
 
 TEST_CASE( "Test toggle with str init", "[bitset]" ) {
-    std::string s("110100100");     // converts a fun number to another fun number
+    std::string s("110100100");
     Bitset b(s);
     b.toggle(0);
     b.toggle(1);

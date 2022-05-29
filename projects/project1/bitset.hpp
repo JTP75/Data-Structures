@@ -7,11 +7,11 @@
 class Bitset
 {
   public:
-    Bitset();                                       // dynamically allocates memory for uint8_t array of length 8, valid
-    Bitset(intmax_t sz);                            // same as default, but length = sz and validates only if sz > 0
-    Bitset(const std::string &value);               // reads string to array, checking for non-one-or-zero bits
+    Bitset();                                       // constructs and validates bitset of length 8
+    Bitset(intmax_t sz);                            // constructs bitset of length sz, valid only if sz > 0
+    Bitset(const std::string &value);               // reads string to ADT, checking for non-one-or-zero bits
     ~Bitset();                                      // deletes allocated memory and destroys object
-    Bitset & operator=(const Bitset &) = delete;    // overloads equals operator to compare bitsets
+    Bitset & operator=(const Bitset &) = delete;    // prohibits copying
     intmax_t size() const;                          // returns size
     bool good() const;                              // returns validity
     void set(intmax_t index);                       // sets value at index, invalid if index is out of bounds
@@ -20,10 +20,12 @@ class Bitset
     bool test(intmax_t index);                      // returns boolean state at index, invalid if index is OOB
     std::string asString() const;                   // returns string representation of bitset
 
+
+
   private:
     uint8_t *ADTPtr;                                // pointer to first uint8_t element of array
-    intmax_t BSsize;                                // length of array
-    bool isValid;                                   // validity --- NOTE: invalid bitsets CANNOT become valid
+    intmax_t BSsize;                                // num of bits
+    bool isValid;                                   // validity --- NOTE: invalid bitsets CANNOT become valid!
 };
 
 #endif
