@@ -50,14 +50,17 @@ bool DynamicBag<T>::remove(const T& item)   // removes top-most element that mat
   if(typeid(T) != typeid(*itemPtr))   // return false if typeids dont match (datatype mismatch)
     return false;
 
-  long removeIndex = -1;                  // find index of top-most item that matches passed item
-  for(size_t i=0; i<bagSize; i++)
-    removeIndex = *(itemPtr+i)==item ? i : removeIndex;
-  
-  if(removeIndex == -1)   // return false if removeIndex is -1 (item not found)
-    return false;
-
-  
+  for(int i=bagSize-1; i>=0; i--){
+    if(itemPtr[i] == item){
+      T *tempPtr = new T[bagSize-1];
+      std::copy(itemPtr, itemPtr+i, tempPtr);
+      std::copy(itemPtr+i+1, itemPtr+bagSize--, tempPtr+i);
+      delete [] itemPtr;
+      itemPtr = tempPtr;
+      return true;
+    }
+  }
+  return false;
 }
 
 template<typename T>
@@ -75,6 +78,9 @@ std::size_t DynamicBag<T>::getCurrentSize() const
 template<typename T>
 bool DynamicBag<T>::contains(const T& item) const
 {  
+  for(int i=0; i<bagSize; i++)
+    if(itemPtr[i]==item)
+      return true;
   return false;
 }
 
@@ -89,5 +95,8 @@ void DynamicBag<T>::clear()
 template<typename T>
 std::size_t DynamicBag<T>::getFrequencyOf(const T & item) const
 {
-  return 0;
+  int freq = 0;
+  for(int i=0; i<bagSize; i++)
+    freq += itemPtr[i]==item ? 1 : 0;
+  return freq;
 };
