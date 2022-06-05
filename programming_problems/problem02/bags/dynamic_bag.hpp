@@ -1,6 +1,8 @@
 #ifndef _DYNAMIC_BAG_HPP_
 #define _DYNAMIC_BAG_HPP_
 
+#define T item_datatype          // macro for clarity
+
 #include "abstract_bag.hpp"
 
 template <typename T>
@@ -41,7 +43,8 @@ public:
   bool contains(const T& item) const;
 
 private:
-
+  std::size_t bagSize;
+  T* itemPtr;
   // TODO
 };
 

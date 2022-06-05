@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "bags",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "dynamic-bag-tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dynamic-bag-tests-Debug-1b2d2a32cbe2da501e7a.json",
+					"name" : "dynamic-bag-tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "limited-size-bag-tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-limited-size-bag-tests-Debug-aa4712591de26176347b.json",
+					"name" : "limited-size-bag-tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-b728495dbfc0d9ff75cd.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jtp75/Desktop/Programs/ece302_jtp75/programming_problems/problem02/bags/build",
+		"source" : "/home/jtp75/Desktop/Programs/ece302_jtp75/programming_problems/problem02/bags"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
