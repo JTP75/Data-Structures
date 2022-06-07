@@ -11,9 +11,10 @@ class FindPalindrome{
 private:
 	// private stuff that you define and implement goes here...
 	
-	vector<string> wordList;		// list of words
-	size_t charCount;				// total number of character contained by wordList
-	
+	vector<string> wordList;					// list of words
+	size_t charCount;							// total number of characters contained by wordList (num of words is just vector.size())
+	vector< vector<string> > palindromes;		// vector of vectors containing all palindromes
+
 	// private stuff that you are given or is specified in the project
 	// description...
 	/** recursive findPalindrome internal method (you write this 
@@ -29,10 +30,11 @@ private:
 	  of palindrome functions available on the Internet. Note: you probably 
 	  do not want to use a recursive version for this test (as it is 
 	  inefficient). You may change the signature of this function. */
-
-	  // ^^^^ applied to a SINGLE string (consists of letters a-z & A-Z, no other characters or spaces)
-
 	bool isPalindrome(string currentString) const;
+
+
+	/** function runs various 'quick checks' to see if palindrome sentences are possible */
+	bool runQuickChecks(vector<string> currentStringVector);
 	
 public:
 	/** Constructor for the FindPalindrome object. */
