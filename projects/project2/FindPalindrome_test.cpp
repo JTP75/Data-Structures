@@ -5,23 +5,66 @@
 
 // There should be at least one test per FindPalindrome method
 
-TEST_CASE( "Test All", "[FindPalindrome]" )
+TEST_CASE( "Test add for single word", "[FindPalindrome]" )
 {
 	FindPalindrome b;
+
 	REQUIRE(b.add("kayak"));
 	REQUIRE_FALSE(b.add("kayak1"));
+};
 
-	vector<string> validList = {"this","is","a","valid","word","list"};
-	vector<string> invalidList = {"this","is","an","invalid","word","list."};
+TEST_CASE( "Test add for word list", "[FindPalindrome]" )
+{
+	FindPalindrome b;
+	
+	WORD_LIST validList = {"this","is","a","valid","word","list"};
+	WORD_LIST invalidList = {"this","is","an","invalid","word","list."};
 	REQUIRE(b.add(validList));
 	REQUIRE_FALSE(b.add(invalidList));
-} 
-/* for some reason my code terminates when it gets to the end of a test case, so i can only use one test case
- - error message:
-	"
-		  {Unknown expression after the reported line}
-		due to a fatal error condition:
-		  SIGABRT - Abort (abnormal termination) signal
-	"
- - also, the terminal reports an extra assertion that is not in this file
-*/
+};
+
+TEST_CASE( "test recursive find and clear", "[FindPalindrome]" )
+{
+	FindPalindrome obj;
+	
+	WORD_LIST a = {"a","AA","AaA"};
+	REQUIRE(obj.add(a));
+	REQUIRE(obj.number() == 6);
+	obj.clear();
+	REQUIRE(obj.number() == 0);
+};
+
+TEST_CASE( "test toVector", "[FindPalindrome]" )
+{
+	FindPalindrome obj;
+
+	WORD_LIST racecar = {"racE","car"};
+
+	obj.add(racecar[0]);
+	REQUIRE(obj.number() == 0);
+	obj.add(racecar[1]);
+	REQUIRE(obj.number() == 1);
+
+	vector<WORD_LIST> pdrs = obj.toVector();
+	REQUIRE(racecar == pdrs[0]);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
