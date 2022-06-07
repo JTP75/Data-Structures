@@ -12,7 +12,7 @@ using namespace std;
 // their scope is limited
 
 // helper function to convert string to lower case
-static void convertToLowerCase(string & value)
+static void str2lower(string & value)
 {
 	locale loc;
 	for (int i=0; i<value.size(); i++) {
@@ -36,7 +36,7 @@ bool FindPalindrome::isPalindrome(string currentString) const
 {
 	locale loc;
 	// make sure that the string is lower case...
-	convertToLowerCase(currentString);
+	str2lower(currentString);
 	// see if the characters are symmetric...
 	int stringLength = currentString.size();
 	for (int i=0; i<stringLength/2; i++) {
