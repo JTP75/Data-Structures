@@ -34,6 +34,30 @@ TEST_CASE( "test recursive find and clear", "[FindPalindrome]" )
 	REQUIRE(obj.number() == 0);
 };
 
+TEST_CASE( "test recursive find for 1 word", "[FindPalindrome]" )
+{
+	FindPalindrome obj;
+	
+	string s = "aibohphobia";		// aibohphobia is the fear of palindromes
+	REQUIRE(obj.add(s));
+	REQUIRE(obj.number() == 1);
+};
+
+TEST_CASE( "test cutTest1 on very large", "[FindPalindrome]" )
+{
+	FindPalindrome obj;
+	
+	WORD_LIST lngList = {"Dennis","Nell","Edna","Leon","Nedra","Otto","Arden","Noel","and","Ellen","sinned"};
+	// any longer than this would take hours to run
+	/*obj.add(lngList); 
+	REQUIRE(obj.number() > 0);
+	obj.clear();*/
+
+	lngList.push_back("alot");		// there is now an odd number of r's, a's, and e's
+	obj.add(lngList);
+	REQUIRE(obj.number() == 0);
+};
+
 TEST_CASE( "test toVector", "[FindPalindrome]" )
 {
 	FindPalindrome obj;
@@ -48,6 +72,7 @@ TEST_CASE( "test toVector", "[FindPalindrome]" )
 	vector<WORD_LIST> pdrs = obj.toVector();
 	REQUIRE(racecar == pdrs[0]);
 };
+
 
 
 

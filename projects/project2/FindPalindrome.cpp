@@ -19,6 +19,20 @@ static void str2lower(string & value)
 		value[i] = tolower(value[i],loc);
 	}
 }
+static string wordlist2str(WORD_LIST list)
+{
+	string listStr = "";
+	for(string s : list)
+		listStr += s;
+	return listStr;
+}
+static int getCharFreq(string str, char c)
+{
+	int count = 0;
+	for(char x : str)
+		count += x == c ? 1 : 0;
+	return count;
+}
 
 //------------------- PRIVATE CLASS METHODS ------------------------------------
 
@@ -27,16 +41,14 @@ static void str2lower(string & value)
 // =============================================================================
 
 // private recursive function. Must use this signature!
-void FindPalindrome::recursiveFindPalindromes(vector<string> candidateStringVector, 
-											  vector<string> currentStringVector)
+void FindPalindrome::recursiveFindPalindromes(WORD_LIST candidateStringVector, 
+											  WORD_LIST currentStringVector)
 {
 	// for initial call: candStrVec is empty and currStrVec is full of all words
 
 	// BASE CASE:
 	if(currentStringVector.empty()){									// if currentstrvec is empty (base case), check if canditate is pdrome
-		string canditateAsString = "";									// put candidate vector in string form
-		for(string s : candidateStringVector)							// **
-			canditateAsString += s;										// **
+		string canditateAsString = wordlist2str(candidateStringVector);	// convert wordlist to string
 		if(isPalindrome(canditateAsString))								// candidate is pdr:
 			palindromes.push_back(candidateStringVector);				// increment count and add pdr to pdrs vector
 		return;															// exit
@@ -74,24 +86,20 @@ bool FindPalindrome::isPalindrome(string currentString) const
 	return true;
 }
 
-bool FindPalindrome::runQuickChecks(WORD_LIST currentStringVector)
+bool FindPalindrome::runQuickChecks()
 {
-	// idea: if this function returns false, recursiveFindPalindromes() will not be called at all
-
-	// WIP...
-
-	return true;
+	return cutTest1(wordList);
 }
 
 //------------------- PUBLIC CLASS METHODS -------------------------------------
 
 FindPalindrome::FindPalindrome(){
-	
+	// vectors are initialized automatically, nothing to explicitly construct
 }
 
 FindPalindrome::~FindPalindrome()
 {
-	wordList.clear();			// call dtors for vector members
+	wordList.clear();			// clear vectors
 	palindromes.clear();
 }
 
@@ -108,14 +116,23 @@ void FindPalindrome::clear()
 
 bool FindPalindrome::cutTest1(const WORD_LIST & stringVector)
 {
-	// TODO need to implement this...
-	return false;
+	string listString = wordlist2str(stringVector);
+	str2lower(listString);
+
+	string alphabet = "abcdefghijklmnopqrstuvwxyz";
+	int freqMod2Sum = 0;	// sum of the freqs of each letter mod 2
+
+	for(int i=0; i<26; i++)
+		freqMod2Sum += ( getCharFreq(listString, alphabet[i]) ) % 2;
+	
+	return freqMod2Sum <= 1;
+	// if sum is more than 1, there is more than 1 letter whose freq is odd
 }
 
 bool FindPalindrome::cutTest2(const WORD_LIST & stringVector1,
                               const WORD_LIST & stringVector2)
 {
-	// TODO need to implement this...
+
 	return false;
 }
 
@@ -129,7 +146,8 @@ bool FindPalindrome::add(const string & value)
 
 	palindromes.clear();									// clear pdrs
 	WORD_LIST cand;											// temp wordlist
-	recursiveFindPalindromes(cand, wordList);				// find palindromes
+	if(runQuickChecks())									// find palindromes if wordlist passes quickchecks
+		recursiveFindPalindromes(cand, wordList);			// **
 
 	return true;
 }
@@ -145,7 +163,8 @@ bool FindPalindrome::add(const WORD_LIST & stringVector)
 
 	palindromes.clear();												// clear pdrs
 	WORD_LIST cand;														// temp wordlist
-	recursiveFindPalindromes(cand, wordList);							// find palindromes
+	if(runQuickChecks())												// find palindromes if wordlist passes quickchecks
+		recursiveFindPalindromes(cand, wordList);						// **
 
 	return true;
 }

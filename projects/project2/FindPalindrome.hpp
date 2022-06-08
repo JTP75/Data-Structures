@@ -34,8 +34,10 @@ private:
 	bool isPalindrome(string currentString) const;
 
 
-	/** function runs various 'quick checks' to see if palindrome sentences are possible */
-	bool runQuickChecks(WORD_LIST currentStringVector);
+	/** function runs various 'quick checks' to see if palindrome sentences are 
+	  possible. this includes cuttest1. if this function returns
+	  false, there is no need to call recursiveFindPalindrome(). */
+	bool runQuickChecks();
 	
 public:
 	/** Constructor for the FindPalindrome object. */
