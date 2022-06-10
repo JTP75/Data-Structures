@@ -19,6 +19,8 @@ static void str2lower(string & value)
 		value[i] = tolower(value[i],loc);
 	}
 }
+
+// helper function to convert WORD_LIST (vector<string>) to a long string
 static string wordlist2str(WORD_LIST list)
 {
 	string listStr = "";
@@ -26,12 +28,20 @@ static string wordlist2str(WORD_LIST list)
 		listStr += s;
 	return listStr;
 }
+
+// helper function to get the frequency of char c in string str
 static int getCharFreq(string str, char c)
 {
 	int count = 0;
 	for(char x : str)
 		count += x == c ? 1 : 0;
 	return count;
+}
+
+// helper function to determine of string str contains char c
+static bool contains(string str, char c)
+{
+	return str.find(c) != string::npos;
 }
 
 //------------------- PRIVATE CLASS METHODS ------------------------------------
@@ -46,12 +56,22 @@ void FindPalindrome::recursiveFindPalindromes(WORD_LIST candidateStringVector,
 {
 	// for initial call: candStrVec is empty and currStrVec is full of all words
 
+	/*
+	  	NOTE: my cutTest2 automatically determines which input is larger (in terms
+		of chars), and conducts the test accordingly. if candidate is larger, fcn will
+		loop through current, making sure each char in current is contained in candidate.
+	*/
+
+	// conduct cutTest2: if failed, move up one recursion layer
+	if(!cutTest2(candidateStringVector, currentStringVector))
+		return;
+
 	// BASE CASE:
 	if(currentStringVector.empty()){									// if currentstrvec is empty (base case), check if canditate is pdrome
 		string canditateAsString = wordlist2str(candidateStringVector);	// convert wordlist to string
 		if(isPalindrome(canditateAsString))								// candidate is pdr:
 			palindromes.push_back(candidateStringVector);				// increment count and add pdr to pdrs vector
-		return;															// exit
+		return;															// move up one recursion layer
 	}
 
 	// RECURSION CASE
@@ -64,7 +84,7 @@ void FindPalindrome::recursiveFindPalindromes(WORD_LIST candidateStringVector,
 			nextCurrent.erase(nextCurrent.begin() + i++);				// remove string s from current temp
 			recursiveFindPalindromes(nextCandidate, nextCurrent);		// pass temps into recursive call
 		}
-		return;															// exit when loop finishes
+		return;															// move up one layer when loop finishes
 	}
 }
 
@@ -114,7 +134,7 @@ void FindPalindrome::clear()
 	palindromes.clear();		// **
 }
 
-bool FindPalindrome::cutTest1(const WORD_LIST & stringVector)
+bool FindPalindrome::cutTest1(const WORD_LIST & stringVector)		// test conducted BEFORE recursive search (speed doesnt matter)
 {
 	string listString = wordlist2str(stringVector);
 	str2lower(listString);
@@ -129,11 +149,31 @@ bool FindPalindrome::cutTest1(const WORD_LIST & stringVector)
 	// if sum is more than 1, there is more than 1 letter whose freq is odd
 }
 
-bool FindPalindrome::cutTest2(const WORD_LIST & stringVector1,
+bool FindPalindrome::cutTest2(const WORD_LIST & stringVector1,		// test conducted DURING recursive search (must be fast!!!)
                               const WORD_LIST & stringVector2)
 {
+	string s1 = wordlist2str(stringVector1);						// convert to strings
+	string s2 = wordlist2str(stringVector2);
 
-	return false;
+	str2lower(s1);
+	str2lower(s2);
+
+	string larger, smaller;
+
+	if(s1.length() >= s2.length()){									// if/else assigns 'larger' and 'smaller' strings
+		larger = s1;
+		smaller = s2;
+	}
+	else{
+		larger = s2;
+		smaller = s1;
+	}
+
+	for(char c : smaller)											// for each char c in range of smaller:
+		if(!contains(larger, c))									// check if larger doesn't contain char c
+			return false;											// if char c is not in larger, return false
+
+	return true;													// if strings make through loop, return true
 }
 
 bool FindPalindrome::add(const string & value)
