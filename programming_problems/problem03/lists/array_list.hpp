@@ -2,7 +2,7 @@
 #define ARRAY_LIST_HPP
 
 #include "abstract_list.hpp"
-
+#define RESIZE_FACTOR 1.5
 template<typename T>
 class ArrayList: public AbstractList<T>
 {
@@ -43,7 +43,9 @@ public:
 
 private:
 
-  // TODO
+  size_t capacity;
+  size_t size;
+  unique_ptr<T[]> array;
   
 };
 

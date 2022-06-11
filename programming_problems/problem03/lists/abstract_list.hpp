@@ -3,6 +3,8 @@
 #define _ABSTRACT_LIST_HPP_
 
 #include <cstdlib>
+#include <memory>
+using std::unique_ptr;
 
 template <typename T>
 class AbstractList
