@@ -10,7 +10,7 @@
 // helper function
 static int factorial(int n)
 {
-	if(n==1) return 1;
+	if(n<=1) return 1;
 	else return n*factorial(n-1);
 }
 
@@ -38,7 +38,7 @@ TEST_CASE( "test recursive find and clear", "[FindPalindrome]" )
 	
 	WORD_LIST a = {"a","AA","AaA"};
 	REQUIRE(obj.add(a));
-	REQUIRE(obj.number() == 6);
+	REQUIRE(obj.number() == factorial(3));
 	obj.clear();
 	REQUIRE(obj.number() == 0);
 };
@@ -55,18 +55,31 @@ TEST_CASE( "test recursive find for 1 word", "[FindPalindrome]" )
 TEST_CASE( "test cutTest1 on very large", "[FindPalindrome]" )
 {
 	FindPalindrome obj;
+	clock_t t, t1, t2;
 	
 	// palindrome
-	WORD_LIST lngList = {"Dennis","Nell","Edna","Leon","Nedra","Otto","Arden","Noel","and","Ellen","sinned"};
+	WORD_LIST lngList = {"Dennis","Nell","Edna","Leon","Nedra","Arden","Noel","and","Ellen","sinned"};
 	// any longer than this would take hours to run
-	/*obj.add(lngList); 
+
+	// measure timing for ten words with possible pdrs
+	t = clock();			// tick
+	obj.add(lngList); 
+	t1 = clock() - t;		// tock
+
 	REQUIRE(obj.number() > 0);
-	obj.clear();*/
+	obj.clear();
 
 	// no longer any possible palindromes, given cuttest1
-	lngList.push_back("alot");		// there is now an odd number of r's, a's, and e's
-	obj.add(lngList);				// despite the long list, this should be quick, since it fails cutTest1
-	REQUIRE(obj.number() == 0);
+	lngList.push_back("alot");		// there is now an odd number of a's, l's, o's, and t's
+
+	// measure timing for 11 words with no possible pdrs
+	t = clock();			// tick
+	obj.add(lngList);
+	t2 = clock() - t;		// tock
+
+	REQUIRE(obj.number() == 0);		// no pdrs
+
+	REQUIRE(t1>t2);			// require that the first operation took longer than the second
 };
 
 TEST_CASE( "test cutTest2 by checking timings", "[FindPalindrome]" )
@@ -98,11 +111,22 @@ TEST_CASE( "test cutTest2 by checking timings", "[FindPalindrome]" )
 	REQUIRE(tP < tU);			// check to make sure timing for uniform is longer
 };
 
+TEST_CASE( "uniform word list test", "[FindPalindrome]" )
+{
+	FindPalindrome obj;
+	string a = "a";
+
+	for(int i=1; i<=10; i++){
+		obj.add(a);						// add one at a time, check each iteration
+		REQUIRE(obj.number() == factorial(i));
+	}
+};
+
 TEST_CASE( "test toVector", "[FindPalindrome]" )
 {
 	FindPalindrome obj;
 
-	WORD_LIST racecar = {"racE","car"};
+	WORD_LIST racecar = {"rACe","car"};
 
 	obj.add(racecar[0]);
 	REQUIRE(obj.number() == 0);
