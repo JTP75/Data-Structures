@@ -44,7 +44,8 @@ public:
 
 private:
 
-  //TODO
+  size_t size;
+  Node<T> *head;
   
 };
 

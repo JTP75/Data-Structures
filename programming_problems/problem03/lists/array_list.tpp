@@ -81,9 +81,10 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
 
 template <typename T>
 bool ArrayList<T>::remove(std::size_t position){
-  if(position < 0 || position > --size)
+  if(position < 0 || position >= size)
     return false;
   
+  size--;
   for(int i = position; i<size; i++)
     array[i] = array[i+1];
 
@@ -104,5 +105,7 @@ T ArrayList<T>::getEntry(std::size_t position) const{
 
 template <typename T>
 void ArrayList<T>::setEntry(std::size_t position, const T& newValue){
+  if(position < 0 || position >= size)
+    return;
   array[position] = newValue;
 }
