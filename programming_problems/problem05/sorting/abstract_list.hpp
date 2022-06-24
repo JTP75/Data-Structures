@@ -28,7 +28,6 @@ public:
 
   // set the value of the item at position using 0-based indexing
   virtual void setEntry(std::size_t position, const T& newValue) = 0;
-  
 };
 
 #endif

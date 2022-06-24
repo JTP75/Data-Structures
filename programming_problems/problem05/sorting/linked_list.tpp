@@ -22,25 +22,26 @@ template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
   Node<T> *xptr = x.head;
+  head = nullptr;
 
-  int i=0;
-  while(xptr != nullptr){
+  for(size_t i = 0; i < x.size; i++){
     insert(i++,xptr->getItem());
     xptr = xptr->getNext();
   }
+  size = x.size;
 }
 
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 {
   Node<T> *xptr = x.head;
+  head = nullptr;
 
-  int i=0;
-  while(xptr != nullptr){
+  for(size_t i = 0; i < x.size; i++){
     insert(i++,xptr->getItem());
     xptr = xptr->getNext();
   }
-
+  size = x.size;
   return *this;
 }
 
@@ -81,8 +82,11 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
     return true;              // exit
   }
 
-  newPtr->setNext(ptr->getNext());   // set newPtr to point to next node
-  ptr->setNext(newPtr);              // set previous node to point to new node
+  if(position < size)
+    newPtr->setNext(ptr->getNext());    // set newPtr to point to next node
+  else
+    newPtr->setNext(nullptr);
+  ptr->setNext(newPtr);                 // set previous node to point to new node
 
   size++;           // increment size
   return true;      // exit
