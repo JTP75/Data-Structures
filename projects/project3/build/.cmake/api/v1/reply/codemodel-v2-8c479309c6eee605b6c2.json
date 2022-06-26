@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "P3",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "XMLParser-tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-XMLParser-tests-Debug-1310086c771ec71fdf44.json",
+					"name" : "XMLParser-tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mainStack::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mainStack-Debug-d6515c27b4120f5fc4fc.json",
+					"name" : "mainStack",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mainXMLParser::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mainXMLParser-Debug-cdc8c79210e06795a61a.json",
+					"name" : "mainXMLParser",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-433e975f9009746cf7c8.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jtp75/Desktop/Programs/ece302_jtp75/projects/project3/build",
+		"source" : "/home/jtp75/Desktop/Programs/ece302_jtp75/projects/project3"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
