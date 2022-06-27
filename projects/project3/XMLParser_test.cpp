@@ -7,13 +7,13 @@
 using namespace std;
 
 // TODO Implement tests of your Stack class and XMLParser class here
-/*
+
 TEST_CASE( "Test Bag add", "[ADT Bag]" )
 {
 	   INFO("Hint: testing Bag add()");
 		// Create a Bag to hold ints
 		Bag<int> intBag;
-		int testSize = 2;
+		int testSize = 50000;
 		int bagSize;
 		bool success;
 		for (int i=0; i<testSize; i++) {
@@ -23,14 +23,14 @@ TEST_CASE( "Test Bag add", "[ADT Bag]" )
 			success = (bagSize == (i+1));
 			REQUIRE(success);
 		}
-}*/
+}
 
 TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 {
 	   INFO("Hint: testing Stack push()");
 		// Create a Stack to hold ints
 		Stack<int> intStack;
-		int testSize = 3;
+		int testSize = 50000;
 		int stackSize;
 		bool success;
 		for (int i=0; i<testSize; i++) {
@@ -41,13 +41,13 @@ TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 			REQUIRE(success);
 		}
 }
-/*
+
 TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 {
 	   INFO("Hint: tokenize single element test of XMLParse");
 		// Create an instance of XMLParse
 		XMLParser myXMLParser;
-		string testString = "<test>stuff</test>";
+		string testString = "<test >stuff</test>";
 		bool success;
 		success = myXMLParser.tokenizeInputString(testString);
 		REQUIRE(success);
@@ -98,7 +98,7 @@ TEST_CASE( "Test Stack handout-1", "[XMLParser]" )
        charStack.clear();
        REQUIRE(charStack.isEmpty() == true);      
 }
-
+/*
 // You can assume that the beginning and the end of CONTENT will not be filled with whitespace
 TEST_CASE( "Test XMLParser tokenizeInputString Handout-0", "[XMLParser]" )
 {
@@ -171,7 +171,7 @@ TEST_CASE( "Test XMLParser parseTokenizedInput Handout-0", "[XMLParser]" )
 			REQUIRE(result[i].tokenType == output[i].tokenType);
 			REQUIRE(result[i].tokenString.compare(output[i].tokenString) == 0);
 		}
-}
+}*/
 
 TEST_CASE( "Test XMLParser Final Handout-0", "[XMLParser]" )
 {
@@ -198,4 +198,4 @@ TEST_CASE( "Test XMLParser Final Handout-0", "[XMLParser]" )
 		REQUIRE(myXMLParser.frequencyElementName("size") == 6);
 		REQUIRE(myXMLParser.containsElementName("color_swatch"));
 		REQUIRE(myXMLParser.frequencyElementName("color_swatch") == 15);
-}*/
+}

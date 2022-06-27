@@ -24,35 +24,44 @@ private:
 public:
 	/** Constructor */
 	Bag(); 
+
 	/** Destructor */
 	~Bag();
+
 	/** Returns the number of items in the bag.
 	    @return The integer number of items in bag. */
 	int size() const;
+
 	/** Determines whether this bag is empty.
 	    @return True if the bag has no items, or false if not. */
 	bool isEmpty() const;
+
 	/** Adds a new item to the bag.
 		@post  If successful, newEntry is added to the bag,
 	    and the number of items in the bag has increased by 1.
 	    @param newItem  The item (of datatype ItemType) to be added.
 		@return  True if insert was successful, or false if not. */
 	bool add(const ItemType& newEntry);
+
 	/** Deletes all entries from this bag.
 	    @post  The bag contains no items, and the number of items is 0. */
 	void clear();
+
 	/** Tests whether this bag contains a given item.
 		@param anItem  The item to locate.
 		@return  True if bag contains anEntry, or false otherwise. */
 	bool contains(const ItemType& anEntry) const;
+
 	/** Returns the number of times a given item appears in this bag.
 		@param anItem  The item to locate.
 		@return  The integer number of times the item is in this bag. */
 	int getFrequencyOf(const ItemType& anEntry) const;
+
 	/** Empties and then fills a given vector with all items that
 	are in this bag.
 		@return  A vector containing all the items in the bag. */
 	std::vector<ItemType> toVector() const;
+	
 };  // end Bag
 
 // Include the source for the template class

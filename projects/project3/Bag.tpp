@@ -7,25 +7,20 @@
 #include <cstddef>
 
 template<class ItemType>
-Bag<ItemType>::Bag() : headPtr(nullptr), itemCount(0)
-{
-}  // end default constructor
+Bag<ItemType>::Bag() : headPtr(nullptr), itemCount(0) {}  // end default constructor
 
 template<class ItemType>
-int Bag<ItemType>::size() const
-{
+int Bag<ItemType>::size() const{
 	return itemCount;
 }  // end size
 
 template<class ItemType>
-bool Bag<ItemType>::isEmpty() const
-{
+bool Bag<ItemType>::isEmpty() const{
 	return itemCount == 0;
 }  // end isEmpty
 
 template<class ItemType>
-bool Bag<ItemType>::add(const ItemType& newEntry)
-{
+bool Bag<ItemType>::add(const ItemType& newEntry){
 	// Add to beginning of chain: new node references rest of chain;
 	// (headPtr is null if chain is empty)
 	Node<ItemType>* nextNodePtr = new Node<ItemType>(newEntry, headPtr); // alternate code
@@ -37,8 +32,7 @@ bool Bag<ItemType>::add(const ItemType& newEntry)
 }  // end add
 
 template<class ItemType>
-void Bag<ItemType>::clear()
-{
+void Bag<ItemType>::clear(){
 	Node<ItemType>* nodeToDeletePtr = headPtr;
 	while (headPtr != nullptr)
 	{
@@ -54,8 +48,7 @@ void Bag<ItemType>::clear()
 }  // end clear
 
 template<class ItemType>
-Node<ItemType>* Bag<ItemType>::getPointerTo(const ItemType& target) const
-{
+Node<ItemType>* Bag<ItemType>::getPointerTo(const ItemType& target) const{
 	bool found = false;
 	Node<ItemType>* curPtr = headPtr;
 
@@ -71,14 +64,12 @@ Node<ItemType>* Bag<ItemType>::getPointerTo(const ItemType& target) const
 } // end getPointerTo
 
 template<class ItemType>
-bool Bag<ItemType>::contains(const ItemType& anEntry) const
-{
+bool Bag<ItemType>::contains(const ItemType& anEntry) const{
 	return (getPointerTo(anEntry) != nullptr);
 }  // end contains
 
 template<class ItemType>
-int Bag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
-{
+int Bag<ItemType>::getFrequencyOf(const ItemType& anEntry) const{
 	int frequency = 0;
 	int counter = 0;
 	Node<ItemType>* curPtr = headPtr;
@@ -97,8 +88,7 @@ int Bag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 }  // end getFrequencyOf
 
 template<class ItemType>
-std::vector<ItemType> Bag<ItemType>::toVector() const
-{
+std::vector<ItemType> Bag<ItemType>::toVector() const{
 	std::vector<ItemType> bagContents;
 	Node<ItemType>* curPtr = headPtr;
 	int counter = 0;
@@ -113,8 +103,7 @@ std::vector<ItemType> Bag<ItemType>::toVector() const
 }  // end toVector
 
 template<class ItemType>
-Bag<ItemType>::~Bag()
-{
+Bag<ItemType>::~Bag(){
 	   clear();
 }  // end destructor
 

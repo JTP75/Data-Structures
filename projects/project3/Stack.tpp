@@ -11,10 +11,7 @@
 
 // TODO: Implement the constructor here
 template<class T>
-Stack<T>::Stack() {
-	currentSize = 0;
-	headptr = nullptr;
-}	// end default constructor
+Stack<T>::Stack() : currentSize(0), headptr(nullptr) {}	// end default constructor
 
 // TODO: Implement the destructor here
 template<class T>
