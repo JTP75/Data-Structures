@@ -47,7 +47,7 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 	   INFO("Hint: tokenize single element test of XMLParse");
 		// Create an instance of XMLParse
 		XMLParser myXMLParser;
-		string testString = "<test >stuff</test>";
+		string testString = "<test src=\"test_img.jpg\">stuff</test>";
 		bool success;
 		success = myXMLParser.tokenizeInputString(testString);
 		REQUIRE(success);
