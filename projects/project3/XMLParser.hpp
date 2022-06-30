@@ -11,30 +11,25 @@
 #include "Stack.hpp"
 
 /** a few macros for ease of access */
-#define STR_BAG 	Bag<std::string>
-#define STR_STACK 	Stack<std::string>
-#define TKN_VECTOR 	std::vector<TokenStruct>
+#define TAG_BAG 	Bag<TagStruct>
+#define TAG_STACK 	Stack<TagStruct>
+#define TOKEN_VECTOR 	std::vector<TokenStruct>
 
 /** enum definition for possible string token types. */
 typedef enum {START_TAG=1, END_TAG, EMPTY_TAG, CONTENT, DECLARATION} TokenType;
 
-/** attribute struct, stores attr name and value together */
-typedef struct _Attribute_ {
-	std::string name, val;					// name/value pair 
-} Attribute;
-
 /** tag struct definition. stores all info about a tag and its indices */
 typedef struct _TagStruct_ {
-	std::string full_str;					// full tag string, including attributes and angle brackets
-	Bag<Attribute> attr_bag;				// bag containing attributes
-	std::size_t start_idx, end_idx;			// start_idx = idx of '<', end_idx = idx of '>' (idcs are relative to main string)
+	std::string name;						// name (same as tokenString in TokenStruct)
+	std::string full_str;					// full tag string, including attributes and delimiters
+	std::string name_str;					// name string, including delimiters, but no attrs
 } TagStruct;
 
 /** TokenStruct definition. Used to store tokens and their corresponding types. */
 typedef struct _TokenStruct_ {
 	TokenType tokenType;		// type
-	std::string tokenString;	// this is name of token (w/o attributes and end/empty indicators)
-	TagStruct tgs;				// added tagstruct member (stores name, attributes, and "<" & ">" indices in main string)
+	std::string tokenString;	// this is the name of the token, no attrs, /? indicators, or delimiters
+	TagStruct tagStruct;		// tagstruct member to store original tag with and without attributes
 } TokenStruct;
 
 class XMLParser
@@ -42,13 +37,13 @@ class XMLParser
 private:
 
 	/** Bag to store the XML element names. Uses the book's Bag implementation. */
-	STR_BAG* name_bag;
+	TAG_BAG* name_bag;
 
 	/** Stack to store XML tag names while parsing. Uses your stack implementation. */
-	STR_STACK* tag_stack;
+	TAG_STACK* tag_stack;
 
 	/** Vector to store the tokenized input string and the token types */
-	TKN_VECTOR tkn_vec;
+	TOKEN_VECTOR tkn_vec;
   
   // You can add or change the private fields.
 
@@ -93,7 +88,7 @@ public:
 	    "XMLParser.h" header file. The token strings corresponding to markup do not
 	    include the '<', '>', "<?", "?>", "</", and "/>" delimiters.
 		@return  A vector containing all the tokenized input as a vector of type "TokenStruct". */
-	TKN_VECTOR returnTokenizedInput() const;
+	TOKEN_VECTOR returnTokenizedInput() const;
 
 	/** Determines if an element name is contained in valid XML input string.
 	    Only finds element names if both the tokenizeInputString() and
@@ -102,7 +97,7 @@ public:
 		@param A string containing the element name (case sensitive!).
 		@return True if the element name is in the valid XML, or false if not. 
 		@throws std::logic_error if input has not been both tokenized and parsed */
-	bool containsElementName(const std::string &str_in) const;
+	bool containsElementName(const std::string &A) const;
 
 	/** Returns the number of times an element name is contained in valid XML input string.
 	    Only returns non-zero frequencies if both the tokenizeInputString() and

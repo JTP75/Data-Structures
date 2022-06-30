@@ -13,7 +13,7 @@ TEST_CASE( "Test Bag add", "[ADT Bag]" )
 	   INFO("Hint: testing Bag add()");
 		// Create a Bag to hold ints
 		Bag<int> intBag;
-		int testSize = 50000;
+		int testSize = 5;
 		int bagSize;
 		bool success;
 		for (int i=0; i<testSize; i++) {
@@ -30,7 +30,7 @@ TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 	   INFO("Hint: testing Stack push()");
 		// Create a Stack to hold ints
 		Stack<int> intStack;
-		int testSize = 50000;
+		int testSize = 5;
 		int stackSize;
 		bool success;
 		for (int i=0; i<testSize; i++) {
@@ -47,12 +47,22 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 	   INFO("Hint: tokenize single element test of XMLParse");
 		// Create an instance of XMLParse
 		XMLParser myXMLParser;
-		string testString = "<test src=\"test_img.jpg\">stuff</test>";
+		string testString = "<test> stuff </test>";
 		bool success;
 		success = myXMLParser.tokenizeInputString(testString);
 		REQUIRE(success);
 }
 
+TEST_CASE( "Test XMLParser tokenizeInputString false", "[XMLParser]" )
+{
+	   INFO("Hint: tokenize single element test of XMLParse");
+		// Create an instance of XMLParse
+		XMLParser myXMLParser;
+		string testString = "<te;st>stuff</te;st>";
+		bool success;
+		success = myXMLParser.tokenizeInputString(testString);
+		REQUIRE(!success);
+}
 
 TEST_CASE( "Test Stack handout-0", "[XMLParser]" )
 {
@@ -171,7 +181,7 @@ TEST_CASE( "Test XMLParser parseTokenizedInput Handout-0", "[XMLParser]" )
 			REQUIRE(result[i].tokenType == output[i].tokenType);
 			REQUIRE(result[i].tokenString.compare(output[i].tokenString) == 0);
 		}
-}*/
+}
 
 TEST_CASE( "Test XMLParser Final Handout-0", "[XMLParser]" )
 {
@@ -199,3 +209,4 @@ TEST_CASE( "Test XMLParser Final Handout-0", "[XMLParser]" )
 		REQUIRE(myXMLParser.containsElementName("color_swatch"));
 		REQUIRE(myXMLParser.frequencyElementName("color_swatch") == 15);
 }
+*/
