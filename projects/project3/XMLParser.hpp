@@ -18,10 +18,23 @@
 /** enum definition for possible string token types. */
 typedef enum {START_TAG=1, END_TAG, EMPTY_TAG, CONTENT, DECLARATION} TokenType;
 
+/** attribute struct, stores attr name and value together */
+typedef struct _Attribute_ {
+	std::string name, val;					// name/value pair 
+} Attribute;
+
+/** tag struct definition. stores all info about a tag and its indices */
+typedef struct _TagStruct_ {
+	std::string full_str;					// full tag string, including attributes and angle brackets
+	Bag<Attribute> attr_bag;				// bag containing attributes
+	std::size_t start_idx, end_idx;			// start_idx = idx of '<', end_idx = idx of '>' (idcs are relative to main string)
+} TagStruct;
+
 /** TokenStruct definition. Used to store tokens and their corresponding types. */
 typedef struct _TokenStruct_ {
-	TokenType tkn_type;
-	std::string tkn_str;
+	TokenType tokenType;		// type
+	std::string tokenString;	// this is name of token (w/o attributes and end/empty indicators)
+	TagStruct tgs;				// added tagstruct member (stores name, attributes, and "<" & ">" indices in main string)
 } TokenStruct;
 
 class XMLParser

@@ -14,7 +14,9 @@ using std::string;
 // helper fcns prototypes
 static string deleteAttributes(string);
 bool isValidName(string);
-std::size_t checkAttributes(string);
+bool parseAttributes(string, Bag<Attribute> &);
+bool parseTag(size_t open_idx, string str_in, TokenStruct &tkn);
+int charfreq(string,char);
 
 
 // TODO: Implement the constructor here
@@ -32,54 +34,23 @@ XMLParser::~XMLParser(){
 
 // TODO: Implement the tokenizeInputString method
 bool XMLParser::tokenizeInputString(const string &str_in){
-	std::size_t i = 0;
-	while(i < str_in.size()){
-		if(str_in[i] == '<')		// if string begins with '<', treat as tag
+	std::size_t idx = 0;
+	while(idx < str_in.size())
+	{
+		// if string begins with '<', read and parse the tag
+		if(str_in[idx] == '<')
 		{
-			std::size_t tagstart_close, pos, attrs_last_idx;
-			string tagstart, tagstart_raw, tagend, name, attrs = "", content;
-
-			tagstart_close = str_in.find('>', i);			// find ">"
-			if(tagstart_close == string::npos)				// check for ">" to close tag
+			TokenStruct tag;
+			if(!parseTag(idx, str_in, tag))
 				return false;
-
-			tagstart_raw = str_in.substr(i, tagstart_close + 1);
-			tagstart = str_in.substr(i + 1, tagstart_close - 1);	// tagstart is substr contained by <>'s
-			pos = tagstart.find(" ");
-			if(pos != string::npos){						// if a space is found, check for attributes
-				attrs = tagstart.substr(pos, tagstart.size());
-				attrs_last_idx = checkAttributes(attrs);	// find attrs last index 
-				if(attrs_last_idx == string::npos)			// check if attributes are valid
-					return false;
-				name = tagstart.substr(0, pos);
-			}else{
-				name = tagstart;
-			}
-			if(!isValidName(name)) return false;				// check if name is valid
-
-			if(tagstart[tagstart.size()-1] == '/'){				// if last value of tag is '/' (empty)
-				i += tagstart.size();							// incr size and continue
-			}else{
-				tagend = "</" + name + ">";						// tagend is same as tagstart, with '/' inserted at beginning
-				std::size_t repeated_nested_count = 0;			// count for number of repeated, nested tags (including first)
-				while()
-
-				if(tagend_open == string::npos)								// check that tagend exists
-					return false;
-				content = str_in.substr(tagstart_close+1, tagend_open-tagstart_close-1);		// content: string between tagstart and tagend
-				i += tagstart_raw.size() + content.size() + tagend.size();						// increment index by sum of lengths of tags and content
-			}
-
-			name_bag->add(name);			// add name to bag
-
-			tag_stack->push(name);			// push END name to stack
-			tokenizeInputString(content);	// recursive call (will push 'content' to stack)
-			tag_stack->push(name);			// push START name to stack
 		}
-		else					// otherwise, treat as content
+
+		// otherwise, treat as content
+		else
 		{
-			nexttag_pos = str_in.find()
+
 		}
+
 	}
 	return true;
 }  // end
@@ -111,14 +82,7 @@ int XMLParser::frequencyElementName(const string &str_in) const{
 	return -1;
 }
 
-// helper fcns
-// TODO: Implement a helper function to delete attributes from a START_TAG
-// or EMPTY_TAG string (you can change this...)
-static string deleteAttributes(string str_in){
-	return str_in;
-}
-
-// checks if string (not including <>'s) is a valid name
+/** checks if string (not including <>'s) is a valid name */
 bool isValidName(string s){
 	if
 	(
@@ -141,27 +105,80 @@ bool isValidName(string s){
 	return true;
 }
 
-/** recursively checks for attributes: 
- * @param	attr_list	list of attrs of the form:  [attribute]="[value]" [attribute]="[value]" ... (first character is a space)
- * @returns index of end of attribute list (string::npos if there are none) */
-std::size_t checkAttributes(string attr_list){
-	if(attr_list.size() == 0)
+/** parse attributes (instead of deleteAttributes): 
+ * @param	tag_str		tag string of the form: <[tag name] [attribute 1]="[value 1]" ...>	
+ * @returns validity of attrs */
+bool parseAttributes(string tag_str, Bag<Attribute> &attr_bag){
+	// 3 is minimum size for a valid tag
+	if(tag_str.size() < 3)
 		return 0;
 	
-	if(attr_list.size() > 0 && attr_list.size() < 7)
-		return string::npos;
-	
-	std::size_t retval, close_quote_idx, eq_idx = attr_list.find("=");
-	if(eq_idx == string::npos || eq_idx >= attr_list.size()-3 || attr_list[eq_idx+1] != '"') 	// check eq exists, isnt at end, and next char is a "
-		return string::npos;																	// return npos: attr list is invalid
-	
-	close_quote_idx = attr_list.find('"', eq_idx+2);				// start search at idx after opening quote (idx will always be within string)
-	if(close_quote_idx == string::npos)						// return npos if closing quote is not found
-		return string::npos;
+	// frequencies must be: 	1 space : 1 equals sign : 2 quotation marks		for each attribute	(assuming no other spaces)
+	int space_count = charfreq(tag_str, ' ');
+	int eq_count = charfreq(tag_str, '=');
+	int quote_count = charfreq(tag_str, '"');
+	if(space_count != eq_count || space_count != 2*quote_count)
+		return false;
 
-	retval = checkAttributes(attr_list.substr(close_quote_idx+1));
-	if(retval == string::npos)
-		return string::npos;
-	
-	return retval + close_quote_idx;
+	// assuming attribute naming conventions are the same as tag names
+	size_t idx = 0;
+	while(idx < tag_str.length() && tag_str[idx] != '>' && tag_str[idx] != '?'){
+		Attribute a;
+
+		size_t space_idx = tag_str.find(' ', idx);
+		size_t eq_idx = tag_str.find('=', idx);
+
+		if(tag_str[eq_idx+1] != '"')	// equals must be followed immediately by quote
+			return false;
+
+		a.name = tag_str.substr( (space_idx+1), (eq_idx) - (space_idx+1) );		// extract attr name
+
+		idx = tag_str.find('"', eq_idx+2) + 1;		// idx is now index after closing quotation mark
+		a.val = tag_str.substr( (eq_idx+2), (idx-1) - (eq_idx+2) );		// extract attr val
+
+		attr_bag.add(a);
+	}
+	return true;
+}
+
+/** general tag parser: parses tag for name and checks that attributes are valid ()
+ * @param str 	full string passed in
+ * @param tkn	struct for token (reference)
+ * @returns bool indicating validity */
+bool parseTag(size_t open_idx, string str_in, TokenStruct &tkn){
+	// check tag is valid
+	if(str_in[open_idx] != '<')			// make sure '<' is at open_idx
+		return false;
+
+	// get tag string
+	size_t end_idx = str_in.find('>', open_idx);							// find closing bracket
+	if(end_idx == string::npos)												// if no closing bracket, invalid tag
+		return false;
+	string tag_str = str_in.substr( (open_idx), (end_idx) - (open_idx) );	// generate tag string
+
+	// get type, return false if invalid
+	bool
+		startIsQM = tag_str[1] == '?',
+		endIsQM = tag_str[tag_str.length()-2] == '?',
+		startIsSL = tag_str[1] == '/',
+		endIsSL = tag_str[tag_str.length()-2] == '/';						// bool vars to determine type (content won't be passed in to this  fcn)
+
+	if			(!startIsQM && !endIsQM && !startIsSL && !endIsSL)		tkn.tokenType = START_TAG;		// no /'s or ?'s at beginning or end
+	else if		(!startIsQM && !endIsQM && startIsSL && !endIsSL)		tkn.tokenType = END_TAG;		// one / at beginning
+	else if		(!startIsQM && !endIsQM && !startIsSL && endIsSL)		tkn.tokenType = EMPTY_TAG;		// one / at end
+	else if		(startIsQM && endIsQM && !startIsSL && !endIsSL)		tkn.tokenType = DECLARATION;	// ?'s at beginning and end
+	else																return false;					// otherwise: invalid tag
+
+	// check and parse attributes
+	if(!parseAttributes())
+		return false;
+}
+
+/** gets frequency of char c in string str */
+int charfreq(string str, char c){
+	int count = 0;
+	for(char x : str)
+		if(x == c)
+			count++;
+	return count;
 }

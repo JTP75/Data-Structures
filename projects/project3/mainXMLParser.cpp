@@ -37,7 +37,7 @@ int main () {
 	vector<TokenStruct> tokenizedInput = myParser.returnTokenizedInput();
 	cout << "Number of tokens are " << tokenizedInput.size() << endl;
 	for (int i=0; i<tokenizedInput.size(); i++) {
-		cout << "Type: " << tokenizedInput[i].tkn_type << " string: "  << tokenizedInput[i].tkn_str << endl;
+		cout << "Type: " << tokenizedInput[i].tokenType << " string: "  << tokenizedInput[i].tokenString << endl;
 	}
 
 	// try to parse the tokenized input string to see if it is valid XML
