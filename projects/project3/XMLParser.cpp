@@ -19,7 +19,9 @@ int charfreq(string,char);
 
 // TODO: Implement the constructor here
 XMLParser::XMLParser() : tkn_vec() {
-	name_bag = new TAG_BAG;
+	TIScalled = false;
+	PTIcalled = false;
+	name_bag = new STR_BAG;
 	tag_stack = new TAG_STACK;
 }  // end default constructor
 
@@ -95,6 +97,8 @@ bool XMLParser::tokenizeInputString(const string &str_in){
 
 			ts.tokenType = CONTENT;
 			size_t next_idx = str_in.find('<', idx);
+			if(next_idx == string::npos)
+				next_idx = str_in.length()-1;
 			size_t i = next_idx;
 			while(str_in[--i] == ' ');						// decrement index until it is not a space
 			ts.tokenString = str_in.substr(idx, 1+i-idx);
@@ -104,125 +108,76 @@ bool XMLParser::tokenizeInputString(const string &str_in){
 		}
 
 	}
+
+	TIScalled = true;
 	return true;
 }  // end
 
 // TODO: Implement the parseTokenizedInput method here
 bool XMLParser::parseTokenizedInput(){
-	return recursiveParser(0,tkn_vec.size()-1);
-}
+	// if TIC was not called successfully, return false
+	if(!TIScalled)
+		return false;
 
-// recursive variant of above fcn
-bool XMLParser::recursiveParser(size_t start_idx, size_t end_idx){
-	if(start_idx == end_idx)	// base
-		return true;
+	for(int i=0; i<tkn_vec.size(); i++)
+	{TokenStruct T = tkn_vec[i];
 
-	// tagstructs in stack are stored in reverse order
-	for(size_t i=start_idx; i<=end_idx; i++)
-	{	TokenStruct T = tkn_vec[i];
-
-		if(T.tokenType == DECLARATION || T.tokenType == EMPTY_TAG){			// declaration or empty tag
-			tag_stack->push(T.tagStruct);		// push struct to stack
+		// if this token is content and tag_stack is empty, content has no container
+		if(T.tokenType == CONTENT && tag_stack->isEmpty()){
+			return false;
 		}
-		else if(T.tokenType == START_TAG){									// start tag
-			tag_stack->push(T.tagStruct);		// push start tag to stack
-			int endtagidx = findEndTag(T,i,end_idx);
-			if(endtagidx == -1 || !recursiveParser(i,endtagidx))
+
+		// if this token is a start tag, push it to the stack and add it to the bag
+		else if(T.tokenType == START_TAG){
+			tag_stack->push(T.tagStruct);
+			name_bag->add(T.tagStruct.name);
+		}
+
+		// if this token is an empty tag, add it to the bag
+		else if(T.tokenType == EMPTY_TAG){
+			name_bag->add(T.tagStruct.name);
+		}
+
+		// if this token is an end tag, check that it matches top of stack and pop the stack
+		else if(T.tokenType == END_TAG){
+			if(tag_stack->peek().name != T.tokenString)
 				return false;
-			i = endtagidx + 1;
-			tag_stack->push(tkn_vec[i].tagStruct);
+			tag_stack->pop();
 		}
+
 	}
-	return true;
-}
-
-// find corresponding end tag for input start tag
-int XMLParser::findEndTag(TokenStruct start_tag, std::size_t start_idx, std::size_t end_idx){
-	if(start_tag.tokenType != START_TAG)	// make sure input is a start tag
-		return -1;
-
-	// count number of identical start/end tags, push to Identical Index Stack
-	Stack<int> IIStack;
-	unsigned int s_tag_count = 0, e_tag_count = 0;
-	for(int i=start_idx; i<=end_idx; i++)
-	{	TokenStruct T = tkn_vec[i];
-		if(T.tokenType == START_TAG && T.tokenString == start_tag.tokenString){
-			s_tag_count++;
-			IIStack.push(i);
-		}else if(T.tokenType == END_TAG && T.tokenString == start_tag.tokenString){
-			e_tag_count++;
-			IIStack.push(i);
-		}
-	}
-
-	int nest_counter = 0, nest_counter_array[IIStack.size()], NCAidx = IIStack.size(), idxarr[IIStack.size()];
-	while(!IIStack.isEmpty())
-	{	int i = IIStack.peek();
-		
-		if(tkn_vec[i].tokenType == END_TAG)
-			nest_counter_array[--NCAidx] = nest_counter++;
-		else
-			nest_counter_array[--NCAidx] = nest_counter--;
-
-		idxarr[NCAidx] = i;
-
-		IIStack.pop();
-	}
-
-	int NCA_ET_val = nest_counter_array[0]-1;
-	for(int i=0; i < sizeof(nest_counter_array)/sizeof(nest_counter_array[0]); i++){
-		if(nest_counter_array[i] == NCA_ET_val){
-			return idxarr[i];						// first occurance of nest_count_at_start_tag_index minus one is end tag
-		}
-	}
-	return -1;
-	/* e.g.	=======================================================================
-			<div> 					<-------- start_tag (input)
-				shit 
-				<div> 
-					more shit 
-				</div> 
-				shit 2 
-				<div> 
-					<div> 
-						deep shit 
-						<notsame>
-							not shit
-						</notsame>
-					</div> 
-					more shit 
-				</div> 
-				last shit 
-			</div> 					<-------- end_tag (should return 16)
-			<div>
-				anotha one
-			</div>
-		sc = 4
-		ec = 4
-		stack = [19 17 16 14 12 7 6 4 2 0] (top to bottom)
-	*/
+	// if stack is not empty, return false
+	PTIcalled = tag_stack->isEmpty();
+	return PTIcalled;
 }
 
 // TODO: Implement the clear method here
 void XMLParser::clear(){
 	// clear data members
+	TIScalled = false;
+	PTIcalled = false;
 	name_bag->clear();
 	tag_stack->clear();
 	tkn_vec.clear();
 }
 
+// TODO: Implement the returnTokenizedInput method here
 TOKEN_VECTOR XMLParser::returnTokenizedInput() const{
 	return tkn_vec;
 }
 
 // TODO: Implement the containsElementName method
 bool XMLParser::containsElementName(const string &str_in) const{
-	return false;
+	if(TIScalled && PTIcalled)
+		return name_bag->contains(str_in);
+	throw std::logic_error("tokenizedInputString and parseTokenizedInputs weren't called");
 }
 
 // TODO: Implement the frequencyElementName method
 int XMLParser::frequencyElementName(const string &str_in) const{
-	return -1;
+	if(TIScalled && PTIcalled)
+		return name_bag->getFrequencyOf(str_in);
+	throw std::logic_error("tokenizedInputString and parseTokenizedInputs weren't called");
 }
 
 /** deletes attrs from tag
@@ -246,7 +201,8 @@ static string deleteAttributes(string tag){
 }
 
 /** checks if name is valid 
- * @param s		string of the form "[name]" */
+ * @param s		string of the form "[name]"
+ * @return 		validity of name */
 bool isValidName(string s){
 	if
 	(

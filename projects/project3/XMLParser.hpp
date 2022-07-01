@@ -11,8 +11,8 @@
 #include "Stack.hpp"
 
 /** a few macros for ease of access */
-#define TAG_BAG 	Bag<TagStruct>
-#define TAG_STACK 	Stack<TagStruct>
+#define STR_BAG 		Bag<std::string>
+#define TAG_STACK 		Stack<TagStruct>
 #define TOKEN_VECTOR 	std::vector<TokenStruct>
 
 /** enum definition for possible string token types. */
@@ -37,13 +37,16 @@ class XMLParser
 private:
 
 	/** Bag to store the XML element names. Uses the book's Bag implementation. */
-	TAG_BAG* name_bag;
+	STR_BAG* name_bag;
 
 	/** Stack to store XML tag names while parsing. Uses your stack implementation. */
 	TAG_STACK* tag_stack;
 
 	/** Vector to store the tokenized input string and the token types */
 	TOKEN_VECTOR tkn_vec;
+
+	/** bools indicating if tokenizeInputString and parseTokenizedInput were called successfully */
+	bool TIScalled, PTIcalled;
   
   // You can add or change the private fields.
 
@@ -78,16 +81,6 @@ public:
 		@param None.
 		@return True if the tokenized string is valid XML, or false if not. */
 	bool parseTokenizedInput();
-
-	/** recursive solution to above function */
-	bool recursiveParser(std::size_t start_idx, std::size_t end_idx);
-
-	/** function to find end tag for a given start tag (counts nested and non-nested repeats) 
-	 * @param start_tag	start tag input
-	 * @param start_idx idx of start tag input ^^
-	 * @param end_idx	end of search window
-	 * @return index of corresponding end tag (-1 if there is none) */
-	int findEndTag(TokenStruct start_tag, std::size_t start_idx, std::size_t end_idx);
 
 	/** Empties and then fills a given vector with the tokenized input string. This
 	    method returns a vector whether or not the tokenized input string was valid XML or not.
