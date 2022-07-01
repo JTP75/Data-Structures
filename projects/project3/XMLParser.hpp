@@ -79,6 +79,16 @@ public:
 		@return True if the tokenized string is valid XML, or false if not. */
 	bool parseTokenizedInput();
 
+	/** recursive solution to above function */
+	bool recursiveParser(std::size_t start_idx, std::size_t end_idx);
+
+	/** function to find end tag for a given start tag (counts nested and non-nested repeats) 
+	 * @param start_tag	start tag input
+	 * @param start_idx idx of start tag input ^^
+	 * @param end_idx	end of search window
+	 * @return index of corresponding end tag (-1 if there is none) */
+	int findEndTag(TokenStruct start_tag, std::size_t start_idx, std::size_t end_idx);
+
 	/** Empties and then fills a given vector with the tokenized input string. This
 	    method returns a vector whether or not the tokenized input string was valid XML or not.
 	    The vector elements are of type TokenStruct. This data type has two fields,
