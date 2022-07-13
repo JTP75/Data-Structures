@@ -83,14 +83,17 @@ Maze &Maze::operator=(const Maze m)
 }
 Maze::~Maze()
 {
-    for(int i=0; i<rows; i++){
-        delete [] maze[i];
-    }
     delete [] maze;
 }
 
 MazeSquare Maze::getSquare(unsigned i, unsigned j) const
 {
+    return maze[i][j];
+}
+MazeSquare Maze::getSquare(State s) const
+{
+    int i = s.rpos;
+    int j = s.cpos;
     return maze[i][j];
 }
 unsigned Maze::getExitCount() const

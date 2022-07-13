@@ -27,12 +27,15 @@ class Maze {
         ~Maze();
         // accessors
         MazeSquare getSquare(unsigned i, unsigned j) const;
+        MazeSquare getSquare(State s) const;
         unsigned getExitCount() const;
         State getInit() const {return init;};
+        unsigned h() const {return rows;};
+        unsigned w() const {return cols;};
 
     private:
     
-        MazeSquare **maze;
+        MazeSquare** maze;
         State init;
         unsigned rows, cols;
 

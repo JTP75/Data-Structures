@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }Maze maze(image);
 
+  // problem object
   Problem p(maze);
 
   /* ============================================================================================================= */
