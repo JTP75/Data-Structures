@@ -2,40 +2,39 @@
 #define _MAZE_HPP_
 
 #include "lib/image.h"
-#include <vector>
 #include <iostream>
 
 struct MazeSquare {
-  Pixel color;
-  bool isEdge;
-  bool isExit;
-  unsigned traversalcount;
+    bool traversable;     // false if black
+    bool isEdge;          // true if on edge
+    bool isExit;          // true if both of above are true
 };
-typedef std::vector<std::vector<MazeSquare>> Matrix;
 
+// state is current coordinates
+struct State{
+  int rpos;
+  int cpos;
+};
+
+// note: maze objects are immutable (since they cant be changed after construction, copying is pointless)
 class Maze {
     public:
-        // public vals
-        unsigned rpos, cpos;
-        // ctor
+        // ctor, dtor, and coopy
+        Maze();
         Maze(Image<Pixel> im);
-        // nav
-        bool up();
-        bool down();
-        bool left();
-        bool right();
+        Maze(const Maze &m);
+        Maze &operator=(const Maze m);
+        ~Maze();
         // accessors
         MazeSquare getSquare(unsigned i, unsigned j) const;
         unsigned getExitCount() const;
-        // reset
-        void reset();
+        State getInit() const {return init;};
 
     private:
     
-        Matrix maze;
-        unsigned rInit, cInit;
+        MazeSquare **maze;
+        State init;
         unsigned rows, cols;
-        unsigned exitcount;
 
 };
 

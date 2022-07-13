@@ -1,26 +1,37 @@
 #include "Maze.hpp"
 
+Maze::Maze()
+{
+    maze = nullptr;
+    init.rpos = 0;
+    init.cpos = 0;
+    rows = 0;
+    cols = 0;
+}
 Maze::Maze(Image<Pixel> im)
 {
     rows = im.height();
     cols = im.width();
+    maze = new MazeSquare*[rows];           // allocate ptr array for rows
+    for(int i=0; i<rows; i++)
+        maze[i] = new MazeSquare[cols];     // for each row ptr, allocate a col
+
+    // yes, i have been writing WAY too much matlab
 
     int redcount = 0;
     for(int i=0; i < rows; i++){
         for(int j=0; j < cols; j++){
 
-            maze[i][j].color = im(i,j);
+            maze[i][j].traversable = im(i,j) != BLACK;
             maze[i][j].isEdge = i==0 || i==rows-1 || j==0 || j==cols-1;
-            maze[i][j].isExit = maze[i][j].isEdge && maze[i][j].color==WHITE;
-            maze[i][j].traversalcount = 0;
+            maze[i][j].isExit = maze[i][j].isEdge && maze[i][j].traversable;
 
-            if(maze[i][j].color==RED){
-                maze[i][j].traversalcount++;
+            if(im(i,j) == RED){
                 redcount++;
-                rInit = i;
-                cInit = j;
+                init.rpos = i;
+                init.cpos = j;
             }
-            else if(maze[i][j].color!=RED && maze[i][j].color!=WHITE && maze[i][j].color!=BLACK){
+            else if(im(i,j) != RED && im(i,j) != WHITE && im(i,j) != BLACK){
                 std::cerr << "Error! Maze contains pixels other than black, white, or red" << std::endl;
                 std::string desc = "Maze::Maze() invalid image";
                 throw std::runtime_error(desc);
@@ -39,47 +50,66 @@ Maze::Maze(Image<Pixel> im)
         std::string desc = "Maze::Maze() invalid image";
         throw std::runtime_error(desc);
     }
-    rpos = rInit;
-    cpos = cInit;
 }
+Maze::Maze(const Maze &m)
+{
+    rows = m.rows;
+    cols = m.cols;
+    init = m.init;
 
-bool Maze::up() 
-{
-    if(maze[rpos+1][cpos].color == BLACK || rpos==0)
-        return false;
-    rpos--;
-    return true;
+    maze = new MazeSquare*[rows];
+    for(int i=0; i<rows; i++)
+        maze[i] = new MazeSquare[cols];
+
+    for(int i=0; i<rows; i++)
+        for(int j=0; j<cols; j++)
+            maze[i][j] = m.maze[i][j];
 }
-bool Maze::down() 
+Maze &Maze::operator=(const Maze m)
 {
-    if(maze[rpos+1][cpos].color == BLACK || rpos==rows-1)
-        return false;
-    rpos++;
-    return true;
+    rows = m.rows;
+    cols = m.cols;
+    init = m.init;
+
+    maze = new MazeSquare*[rows];
+    for(int i=0; i<rows; i++)
+        maze[i] = new MazeSquare[cols];
+
+    for(int i=0; i<rows; i++)
+        for(int j=0; j<cols; j++)
+            maze[i][j] = m.maze[i][j];
+
+    return *this;
 }
-bool Maze::left() 
+Maze::~Maze()
 {
-    if(maze[rpos+1][cpos].color == BLACK || cpos==0)
-        return false;
-    cpos--;
-    return true;
-}
-bool Maze::right() 
-{
-    if(maze[rpos+1][cpos].color == BLACK || cpos==cols-1)
-        return false;
-    rpos++;
-    return true;
+    for(int i=0; i<rows; i++){
+        delete [] maze[i];
+    }
+    delete [] maze;
 }
 
 MazeSquare Maze::getSquare(unsigned i, unsigned j) const
 {
     return maze[i][j];
 }
-unsigned Maze::getExitCount()
-
-
-
+unsigned Maze::getExitCount() const
+{
+    unsigned count = 0;
+    for(int i=0; i<rows; i++){
+        if(maze[i][0].isExit)
+            count++;
+        if(maze[i][cols-1].isExit)
+            count++;
+    }
+    for(int j=0; j<cols; j++){
+        if(maze[0][j].isExit)
+            count++;
+        if(maze[rows-1][j].isExit)
+            count++;
+    }
+    return count;
+}
 
 
 

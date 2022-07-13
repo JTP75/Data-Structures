@@ -2,13 +2,15 @@
 #include <iostream>
 #include "lib/image.h"
 #include "Maze.hpp"
+#include "Problem.hpp"
 #include "dynamic_array_list.hpp"
 #include "queue.hpp"
 
 using namespace std;
 
+
 int main(int argc, char *argv[])
-{
+{/*
   // get input/output file names from command line arguments
   if (argc != 3) {
     std::cout << "Usage: pathfinder "
@@ -21,6 +23,9 @@ int main(int argc, char *argv[])
   string output_file = argv[2];
   /* ============================================================================================================= */
 
+  string input_file = "tests/maze00.png";
+  string output_file = "tests/output00.png";
+
   // Read input image from file
   Image<Pixel> image;
   try{
@@ -29,19 +34,20 @@ int main(int argc, char *argv[])
     cerr << "Error! Exception thrown by readFromFile(): " << err.what() << endl;
     throw err;
   }
-
   int rows = image.height();
   int cols = image.width();
 
-  // check maze is valid
+  // check image is valid and construct maze
   try{
-    Maze maze(image);
+    Maze test(image);
   }catch(std::runtime_error err){
     return EXIT_FAILURE;
-  }
+  }Maze maze(image);
+
+  Problem p(maze);
 
   /* ============================================================================================================= */
   // Write solution image to file
   writeToFile(image, output_file);
-  
+  cout << "\nAll Good :D\n" << endl;
 }
