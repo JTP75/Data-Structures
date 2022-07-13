@@ -4,7 +4,7 @@
 #include "abstract_list.hpp"
 
 template <typename T>
-class DynamicArrayList: public AbstractList<T>
+class DynamicArrayList : public AbstractList<T>
 {
 public:
 

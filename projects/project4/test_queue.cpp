@@ -5,7 +5,37 @@
 #include "dynamic_array_list.hpp"
 #include "queue.hpp"
 
-TEST_CASE("Testing all", "[queue]") {
+TEST_CASE("test arraylist", "[array list]") {
+  DynamicArrayList<int> alst;
+  REQUIRE(alst.isEmpty());
+
+  alst.insert(0, 100);
+  alst.insert(0,99);
+  REQUIRE_FALSE(alst.isEmpty());
+  REQUIRE(alst.getLength()==2);
+
+  alst.insert(2,102);
+  alst.insert(3,103);
+  alst.insert(2,101);
+  REQUIRE(alst.getLength()==5);
+  REQUIRE(alst.getEntry(0)==99);
+  REQUIRE(alst.getEntry(1)==100);
+  REQUIRE(alst.getEntry(2)==101);
+  REQUIRE(alst.getEntry(3)==102);
+  REQUIRE(alst.getEntry(4)==103);
+
+  alst.remove(0);
+  alst.remove(3);
+  alst.remove(1);
+  REQUIRE(alst.getLength()==2);
+  REQUIRE(alst.getEntry(0)==100);
+  REQUIRE(alst.getEntry(1)==102);
+
+  alst.clear();
+  REQUIRE(alst.isEmpty());
+}
+
+TEST_CASE("testing all", "[queue]") {
   Queue<int, DynamicArrayList<int>> queue;
 
   queue.enqueue(12);
