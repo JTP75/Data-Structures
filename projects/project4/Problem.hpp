@@ -24,7 +24,8 @@ class Problem
     // unlist fcns
     State getState() const noexcept;
     void setState(State s);
-    void reset() noexcept;
+    void setFrontier(State s) {maze.setFrontier(s);};
+    bool getFrontier(State s) const {return maze.getSquare(s).frontier;};
 
 };
 

@@ -74,11 +74,6 @@ void Problem::setState(State st)
                 goalStates.push_back(s);
             }
 }
-/** resets state to initial problem state (stored in maze object) */
-void Problem::reset() noexcept
-{
-    state = initial();
-}
 
 
 bool operator==(const State &LHS, const State &RHS)

@@ -5,9 +5,10 @@
 #include <iostream>
 
 struct MazeSquare {
-    bool traversable;     // false if black
-    bool isEdge;          // true if on edge
-    bool isExit;          // true if both of above are true
+    bool traversable;       // false if black
+    bool isEdge;            // true if on edge
+    bool isExit;            // true if both of above are true
+    bool frontier = false;  // true if square was added to frontier
 };
 
 // state is current coordinates
@@ -16,7 +17,6 @@ struct State{
   int cpos;
 };
 
-// note: maze objects are immutable (since they cant be changed after construction, copying is pointless)
 class Maze {
     public:
         // ctor, dtor, and coopy
@@ -32,6 +32,7 @@ class Maze {
         State getInit() const noexcept {return init;};
         unsigned h() const {return rows;};
         unsigned w() const {return cols;};
+        void setFrontier(State s);
 
     private:
     

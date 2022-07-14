@@ -113,7 +113,12 @@ unsigned Maze::getExitCount() const
     }
     return count;
 }
-
+void Maze::setFrontier(State s)
+{
+    int i = s.rpos;
+    int j = s.cpos;
+    maze[i][j].frontier = true;
+}
 
 
 

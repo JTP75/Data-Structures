@@ -8,10 +8,14 @@
 
 using namespace std;
 
+// typedefs
+typedef Queue< State, DynamicArrayList<State> > StateQueue;
+
 // global vars
 State Fail_State {-1,-1};
 
 // fcns
+void enqueue(StateQueue &, Problem &, State s);
 State breadthFirstSearch(Problem);
 
 
@@ -61,6 +65,15 @@ int main(int argc, char *argv[])
   cout << "\nAll Good :D\n" << endl;
 }
 
+/** enqueue function: performs additional tasks 
+ * saves
+*/
+void enqueue(StateQueue &f, Problem &p, State s)
+{
+  p.setFrontier(s);
+  f.enqueue(s);
+}
+
 /** conducts a BFS
  * @param problem problem object containing maze object, present state, and a list of goal states
  * @return solution state 
@@ -72,7 +85,7 @@ State breadthFirstSearch(Problem problem)
     return problem.initial();
 
   // intialize frontier queue and explored vector
-  Queue< State, DynamicArrayList<State> > frontier;
+  StateQueue frontier;
   vector<State> explored;
 
   // add initial value to frontier
@@ -97,3 +110,4 @@ State breadthFirstSearch(Problem problem)
   // if frontier is empty, all states are explored with no solution --> return failure
   return Fail_State;
 }
+
