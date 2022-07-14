@@ -14,11 +14,17 @@ class Problem
     std::vector<State> goalStates;    // list of goal states as (row,col) pairs
 
   public:
+    // ctor/dtor
     Problem(Maze m);
     ~Problem();
-    State initial() const;
+    // listed fcns
+    State initial() const noexcept;
     bool goal() const;
-    std::vector<State> actions(State s) const;
+    std::vector<State> actions() const;
+    // unlist fcns
+    State getState() const noexcept;
+    void setState(State s);
+    void reset() noexcept;
 
 };
 

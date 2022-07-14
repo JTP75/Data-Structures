@@ -29,7 +29,7 @@ class Maze {
         MazeSquare getSquare(unsigned i, unsigned j) const;
         MazeSquare getSquare(State s) const;
         unsigned getExitCount() const;
-        State getInit() const {return init;};
+        State getInit() const noexcept {return init;};
         unsigned h() const {return rows;};
         unsigned w() const {return cols;};
 

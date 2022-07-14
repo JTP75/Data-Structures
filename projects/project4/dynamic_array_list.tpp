@@ -12,7 +12,7 @@ DynamicArrayList<T>::DynamicArrayList()
 {
   capacity = INIT_CAP;
   size = 0;
-  data = new T(capacity);
+  data = new T[capacity];
 }
   
 template <typename T>
@@ -20,7 +20,7 @@ DynamicArrayList<T>::DynamicArrayList(const DynamicArrayList<T>& x)
 {
   capacity = x.capacity;
   size = x.size;
-  data = new T(capacity);
+  data = new T[capacity];
   for(size_t i = 0; i<size; i++)
     data[i] = x.data[i];
 }
@@ -36,7 +36,7 @@ DynamicArrayList<T>& DynamicArrayList<T>::operator=(const DynamicArrayList<T> x)
 {
   capacity = x.capacity;
   size = x.size;
-  data = new T(capacity);
+  data = new T[capacity];
   for(size_t i=0; i < size; i++)
     data[i] = x.data[i];
   return *this;
@@ -64,7 +64,7 @@ void DynamicArrayList<T>::insert(std::size_t position, const T& item)
   }
   // resize if necessary
   if(size == capacity){
-    T *newarr = new T(RESIZE_FACTOR*capacity);  // create new array w/ extra capacity
+    T *newarr = new T[RESIZE_FACTOR*capacity];  // create new array w/ extra capacity
     for(size_t i=0; i < capacity; i++)          // copy items
       newarr[i] = data[i];
     delete [] data;                             // delete old array
