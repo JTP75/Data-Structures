@@ -119,7 +119,12 @@ void Maze::setFrontier(State s)
     int j = s.cpos;
     maze[i][j].frontier = true;
 }
-
+void Maze::setExplored(State s)
+{
+    int i = s.rpos;
+    int j = s.cpos;
+    maze[i][j].explored = true;
+}
 
 
 

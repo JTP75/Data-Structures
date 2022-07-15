@@ -9,6 +9,7 @@ struct MazeSquare {
     bool isEdge;            // true if on edge
     bool isExit;            // true if both of above are true
     bool frontier = false;  // true if square was added to frontier
+    bool explored = false;  // true if square was explored
 };
 
 // state is current coordinates
@@ -33,6 +34,7 @@ class Maze {
         unsigned h() const {return rows;};
         unsigned w() const {return cols;};
         void setFrontier(State s);
+        void setExplored(State s);
 
     private:
     

@@ -26,6 +26,8 @@ class Problem
     void setState(State s);
     void setFrontier(State s) {maze.setFrontier(s);};
     bool getFrontier(State s) const {return maze.getSquare(s).frontier;};
+    void setExplored(State s) {maze.setExplored(s);};
+    bool getExplored(State s) const {return maze.getSquare(s).explored;};
 
 };
 

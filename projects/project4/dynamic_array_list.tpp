@@ -1,7 +1,7 @@
 #include "dynamic_array_list.hpp"
 
-#define INIT_CAP 100
-#define RESIZE_FACTOR 2
+#define INIT_CAP 1000
+#define RESIZE_FACTOR 100
 
 using std::size_t;
 using std::string;

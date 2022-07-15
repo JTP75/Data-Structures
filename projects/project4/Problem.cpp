@@ -66,13 +66,13 @@ void Problem::setState(State st)
                         "\tRequested state: (" + std::to_string(st.rpos) + "," + std::to_string(st.cpos) + ")\n";
         throw std::runtime_error(desc);
     }
-    state = st;
+    state = st;/*
     for(int i=0; i < maze.h(); i++)
         for(int j=0; j < maze.w(); j++)
             if(maze.getSquare(i,j).isExit){
                 State s = {i,j};
                 goalStates.push_back(s);
-            }
+            }*/
 }
 
 
