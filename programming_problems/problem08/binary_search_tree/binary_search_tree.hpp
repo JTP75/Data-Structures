@@ -41,7 +41,7 @@ private:
     void clone(Node<KeyType, ItemType>* rhs);
     void destroy();
 
-    void inorder(Node<KeyType, ItemType>* curr, Node<KeyType, ItemType>*& in,
+    void inorder(Node<KeyType, ItemType>* curr, Node<KeyType, ItemType>*& successor,
         Node<KeyType, ItemType>*& parent);
 
     void search(KeyType key, Node<KeyType, ItemType>*& curr,
