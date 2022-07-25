@@ -96,3 +96,15 @@ TEST_CASE("Test Copy Assign", "[copy assign]") {
     
 }
 
+TEST_CASE("Test sort", "[treeSort]") {
+    TreeType bst1;
+    int size = 10;
+    int arr[size] = {5,6,9,1,3,4,2,7,8,0};
+
+    bst1.treeSort(arr,size);
+
+    bool isSorted = true;
+    for(int i=1; i<size; i++)
+        isSorted = isSorted && arr[i-1]<=arr[i];
+    REQUIRE(isSorted);
+}

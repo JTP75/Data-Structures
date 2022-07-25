@@ -294,11 +294,66 @@ void BinarySearchTree<KeyType, ItemType>::search
     }
 }
 
+// helper struct for bonus
+template<typename I>
+struct Dupe {
+    I value;
+    int frequency = 2;
+};
+
+
 template<typename KeyType, typename ItemType>
-void BinarySearchTree<KeyType, ItemType>::treeSort(ItemType arr[], int size) {
+void BinarySearchTree<KeyType, ItemType>::treeSort(ItemType arr[], int size)
+{
+    std::vector<Dupe<ItemType>> dupes;
+    for(int i=0; i<size; i++){
+        if(!insert(arr[i],arr[i])){
+            bool needNew = true;
+            for(Dupe<ItemType> d : dupes)
+                if(d.value == arr[i]){
+                    needNew = false;
+                    d.frequency++;
+                    break;
+                }
+            if(needNew){
+                Dupe<ItemType> d ;
+                d.value = arr[i];
+                dupes.push_back(d);
+            }
+        }
+    }
+
+    std::vector<ItemType> v = tree2vect(root);
+    int i=0;
+    for(ItemType item : v){
+        int freq = 1;
+        for(Dupe<ItemType> d : dupes)
+            if(d.value == item)
+                freq = d.frequency;
+        for(int j=0; j<freq; j++){
+            arr[i++] = item;
+        }
+    }
+
     // TODO: check for duplicate items in the input array
 
     // TODO: use the tree to sort the array items
 
     // TODO: overwrite input array values with sorted values
 }
+
+template<typename KeyType, typename ItemType>
+std::vector<ItemType> BinarySearchTree<KeyType, ItemType>::
+    tree2vect(Node<KeyType, ItemType> *nd) const
+{
+    if(nd == 0){
+        std::vector<ItemType> v;
+        return v;
+    }
+    std::vector<ItemType> retvec = tree2vect(nd->left);
+    retvec.push_back(nd->data);
+    std::vector<ItemType> rhs = tree2vect(nd->right);
+    retvec.insert(retvec.end(),rhs.begin(),rhs.end());
+    return retvec;
+}
+
