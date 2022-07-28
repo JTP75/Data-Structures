@@ -12,6 +12,43 @@ struct Entry {
 };
 
 
+TEST_CASE("Tests for double-stack list","[list]") {
+    List<int> lst;
+
+    REQUIRE(lst.getLength() == 0);
+    REQUIRE(lst.isEmpty());
+
+    REQUIRE(lst.insert(0,36));
+    REQUIRE(lst.insert(1,49));
+    REQUIRE(lst.insert(0,25));
+    
+    REQUIRE(lst.getLength() == 3);
+    REQUIRE_FALSE(lst.isEmpty());
+    for(int i=0; i < 3; i++)
+        REQUIRE(lst.getEntry(i) == (i+5)*(i+5));
+
+    REQUIRE_FALSE(lst.insert(-1,0));
+    REQUIRE_FALSE(lst.insert(4,0));
+    REQUIRE(lst.insert(3,0));
+
+    REQUIRE(lst.insert(2,-555));
+    lst.setEntry(4,64);
+    REQUIRE(lst.remove(2));
+
+    for(int i=0; i < 4; i++)
+        REQUIRE(lst.getEntry(i) == (i+5)*(i+5));
+
+    REQUIRE_FALSE(lst.remove(4));
+    REQUIRE(lst.remove(3));
+    REQUIRE(lst.remove(0));
+
+    for(int i=0; i < 2; i++)
+        REQUIRE(lst.getEntry(i) == (i+6)*(i+6));
+    
+    lst.clear();
+    REQUIRE(lst.isEmpty());
+}
+
 TEST_CASE("Test Construction", "[construction]") {
     Database<std::string> testdb;
 

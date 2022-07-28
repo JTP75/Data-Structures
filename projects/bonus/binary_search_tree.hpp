@@ -3,6 +3,7 @@
 #define _BINARY_SEARCH_TREE_H_
 
 #include <stack>
+#include <vector>
 
 template <typename KeyType, typename ItemType>
 class BinarySearchTree
@@ -45,6 +46,8 @@ private:
 
     void search(KeyType key, Node<KeyType, ItemType>*& curr,
         Node<KeyType, ItemType>*& parent);
+
+    std::vector<ItemType> tree2vect(Node<KeyType, ItemType> *nd) const;
 };
 
 #include "binary_search_tree.tpp"

@@ -24,7 +24,7 @@ public:
   virtual void clear() = 0;
 
   // get a copy of the item at position 
-  virtual T getEntry(std::size_t position) const = 0;
+  virtual T getEntry(std::size_t position) = 0;
 
   // set the value of the item at position 
   virtual void setEntry(std::size_t position, const T& newValue) = 0;

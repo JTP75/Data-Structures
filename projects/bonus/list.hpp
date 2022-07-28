@@ -2,7 +2,12 @@
 #define _LIST_HPP_
 
 #include "abstract_list.hpp"
+#include <stack>
 
+
+/** 
+ * double-stack list implementation (for fun)
+ */
 template <typename T>
 class List: public AbstractList<T>
 {
@@ -36,14 +41,18 @@ public:
   void clear();
 
   // get a copy of the item at position 
-  T getEntry(std::size_t position) const;
+  T getEntry(std::size_t position);
 
   // set the value of the item at position 
   void setEntry(std::size_t position, const T& newValue);
 
 private:
 
-  //TODO
+  std::stack<T> Lstack;     // left stack
+  std::stack<T> Rstack;     // right stack
+  size_t size;              // list size
+
+  void DSNav(std::size_t position);
   
 };
 
