@@ -22,11 +22,7 @@ size_t Database<T>::getNumberOfEntries()
 template <typename T>
 bool Database<T>::add(string key1, string key2, const T& item)
 {
-    size_t new_index;
-    if(data.isEmpty())
-        new_index = 0;
-    else
-        data.getLength()-1;
+    size_t new_index = data.getLength();
 
     if(BST1.insert(key1,new_index) && BST2.insert(key2,new_index)){
         DatabaseEntry<T> entry = {item,key1,key2};

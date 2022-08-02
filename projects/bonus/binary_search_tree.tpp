@@ -106,6 +106,8 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
         root = new Node<KeyType,ItemType>;
         root->data = item;
         root->key = key;
+        root->left = 0x0;
+        root->right = 0x0;
         return true;
     }
     // search tree for key
@@ -118,6 +120,8 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     Node<KeyType,ItemType> *newPtr = new Node<KeyType,ItemType>;
     newPtr->data = item;
     newPtr->key = key;
+    newPtr->left = 0x0;
+    newPtr->right = 0x0;
 
     // place new node on lhs or rhs according to key
     if(key < insert_after->key)

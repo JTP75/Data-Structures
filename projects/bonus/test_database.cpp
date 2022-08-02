@@ -9,6 +9,13 @@ struct Entry {
     std::string title;
     std::string author;
     int pubYear;
+
+    inline bool operator==(Entry rhs) const {
+        return
+            this->title == rhs.title &&
+            this->author == rhs.author &&
+            this->pubYear == rhs.pubYear;
+    };
 };
 
 
@@ -173,10 +180,38 @@ TEST_CASE("Test Entry Types", "[entry type]") {
     e2.pubYear = 2032;
 
     testdb.add(isbn2, catalog_id2, e2);
+    Entry CID1, ISBN1, CID2, ISBN2;
 
-    // TODO
-    
+    REQUIRE(testdb.getNumberOfEntries() == 2);
+    REQUIRE(testdb.getValue(catalog_id1) == e1);
+    REQUIRE(testdb.getValue(isbn1) == e1);
+    REQUIRE(testdb.getValue(catalog_id2) == e2);
+    REQUIRE(testdb.getValue(isbn2) == e2);
+
 }
 
+void recAbsValAdder(Database<uint> &db, uint N, uint nvals){
+    if(db.getNumberOfEntries() >= nvals)
+        return;
 
+    std::string pos = std::to_string(N);
+    std::string neg = "-" + std::to_string(N);
+    db.add(pos,neg,N);
+
+    recAbsValAdder(db, N/2, nvals);
+    recAbsValAdder(db, 3*N/2, nvals);
+}
+
+TEST_CASE("Test large database", "[size test]") {
+    Database<uint> absval;
+    uint nvals = 100;
+
+
+    REQUIRE(absval.getNumberOfEntries() == nvals);
+
+    REQUIRE(absval.getValue("25") == 25);
+    REQUIRE(absval.getValue("-25") == 25);
+    REQUIRE(absval.getValue("-100") == 100);
+    REQUIRE(absval.getValue("41") == 41);
+}
 
