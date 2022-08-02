@@ -3,6 +3,7 @@
 #include "catch.hpp"
 
 #include "Database.hpp"
+#include <math.h>
 
 
 struct Entry {
@@ -190,28 +191,24 @@ TEST_CASE("Test Entry Types", "[entry type]") {
 
 }
 
-void recAbsValAdder(Database<uint> &db, uint N, uint nvals){
-    if(db.getNumberOfEntries() >= nvals)
-        return;
-
-    std::string pos = std::to_string(N);
-    std::string neg = "-" + std::to_string(N);
-    db.add(pos,neg,N);
-
-    recAbsValAdder(db, N/2, nvals);
-    recAbsValAdder(db, 3*N/2, nvals);
-}
-
 TEST_CASE("Test large database", "[size test]") {
     Database<uint> absval;
-    uint nvals = 100;
+    uint nvals = 10;
 
+    for(uint i = 1; i <= nvals; i++){
+        std::string pos = std::to_string(i);
+        std::string neg = "-" + std::to_string(i);
+        absval.add(pos,neg,i);
+    }
 
     REQUIRE(absval.getNumberOfEntries() == nvals);
 
-    REQUIRE(absval.getValue("25") == 25);
-    REQUIRE(absval.getValue("-25") == 25);
-    REQUIRE(absval.getValue("-100") == 100);
-    REQUIRE(absval.getValue("41") == 41);
+    REQUIRE(absval.getValue("5") == 5);
+    REQUIRE(absval.getValue("-2") == 2);
+    REQUIRE(absval.getValue("-10") == 10);
+    REQUIRE(absval.getValue("4") == 4);
+
+    REQUIRE(absval.remove("-9"));
+    REQUIRE(absval.remove("2"));
 }
 

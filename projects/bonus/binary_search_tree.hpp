@@ -26,8 +26,8 @@ private:
     struct Node {
         I data;
         K key;
-        Node<K, I>* left;
-        Node<K, I>* right;
+        Node<K, I>* left = 0x0;
+        Node<K, I>* right = 0x0;
     };
 
     template <typename K, typename I>

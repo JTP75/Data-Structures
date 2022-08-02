@@ -257,10 +257,11 @@ void BinarySearchTree<KeyType, ItemType>::inorder(Node<KeyType, ItemType>* curr,
     RHsubtree.clone(curr->right);
 
     // search for key
-    RHsubtree.search(curr->key,in,parent);
-    // TODO 
-    // move right once
-    // move left as far as possible
+    Node<KeyType, ItemType> *in_clone, *parent_clone;
+    RHsubtree.search(curr->key,in_clone,parent_clone);
+
+    // find key in acual tree
+    search(in_clone->key,in,parent);
 }
 
 int depth = 0;
