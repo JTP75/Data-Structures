@@ -181,7 +181,6 @@ TEST_CASE("Test Entry Types", "[entry type]") {
     e2.pubYear = 2032;
 
     testdb.add(isbn2, catalog_id2, e2);
-    Entry CID1, ISBN1, CID2, ISBN2;
 
     REQUIRE(testdb.getNumberOfEntries() == 2);
     REQUIRE(testdb.getValue(catalog_id1) == e1);
@@ -208,7 +207,12 @@ TEST_CASE("Test large database", "[size test]") {
     REQUIRE(absval.getValue("-10") == 10);
     REQUIRE(absval.getValue("4") == 4);
 
-    REQUIRE(absval.remove("-9"));
     REQUIRE(absval.remove("2"));
+
+    REQUIRE_FALSE(absval.remove("-2"));
+    REQUIRE(absval.getValue("2") == int());
+    REQUIRE(absval.getNumberOfEntries() == nvals - 1);
+    
+
 }
 
